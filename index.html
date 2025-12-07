@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>C & P — Mariage à Marrakech</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" 
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+  <script src="mapLinks.js"></script>
+</head>
+<body>
+  <div class="page-shell page-shell--full">
+    <!-- En-tête fixe : bouton marque + navigation mobile-first (Programme / Lieu / Dress Code / RSVP) -->
+    <header class="site-header ui-header">
+      <div class="site-header-inner ui-header-inner">
+        <a href="index.html" class="brand-button" data-content="brand.mark" aria-label="Retour à l'accueil"></a>
+        <nav class="site-nav" aria-label="Navigation principale">
+          <a href="#programme" class="nav-link" data-content="nav.program"></a>
+          <a href="lieu.html" class="nav-link" data-content="nav.venue"></a>
+          <a href="rsvp.html" class="nav-link nav-primary" data-content="nav.rsvp"></a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero plein écran avec image de fond hero.jpg, gradient et contenu centré -->
+    <main>
+      <section id="hero" class="hero-section">
+        <div class="hero-bg" style="background-image: url('assets/hero.jpg');">
+          <div class="hero-gradient"></div>
+        </div>
+
+        <div class="hero-content">
+          <h1 class="hero-title" data-content="home.title"></h1>
+          <p class="hero-date" data-content="home.eyebrow"></p>
+
+        </div>
+      </section>
+
+      <!-- Contenu complémentaire sous le hero -->
+      <div class="page-shell">
+      
+
+
+        <!-- Section Programme (ex-page dédiée) -->
+        <section id="programme">
+          <header class="page-header">
+            <h1 style="text-align: center;" data-content="program.title"></h1>
+          </header>
+
+          <div class="program-list">
+            <!-- Cartes du programme générées en JS -->
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p data-content="footer.home"></p>
+    </footer>
+  </div>
+
+  <script src="content.js"></script>
+  <script>
+    (function () {
+      const { shared, home, eventsPage } = window.siteContent;
+      const events = Array.isArray(eventsPage.items) ? eventsPage.items : [];
+      const mapLinks = (window.mapLinks && window.mapLinks.program) || [];
+
+      applyContent({
+        text: {
+          "brand.mark": shared.brandMark,
+          "brand.names": shared.brandNames,
+          "brand.sub": shared.brandSub,
+          "nav.program": shared.nav.program,
+          "nav.venue": shared.nav.venue,
+          "nav.dresscode": shared.nav.dresscode,
+          "nav.rsvp": shared.nav.rsvp,
+          "home.eyebrow": home.eyebrow,
+          "home.title": home.title,
+          "home.description": home.description,
+          "home.cta.program": home.buttons.program,
+          "home.cta.rsvp": home.buttons.rsvp,
+          "home.info.date.label": home.info.date.label,
+          "home.info.date.value": home.info.date.value,
+          "home.info.location.label": home.info.location.label,
+          "home.info.location.value": home.info.location.value,
+          "home.info.dresscode.label": home.info.dresscode.label,
+          "home.info.dresscode.value": home.info.dresscode.value,
+          "home.side.title": home.side.title,
+          "footer.home": shared.footer.home,
+          "program.eyebrow": eventsPage.eyebrow,
+          "program.title": eventsPage.title,
+          "program.intro": eventsPage.intro,
+        },
+        html: {
+          "home.side.item1": home.side.items[0],
+          "home.side.item2": home.side.items[1],
+          "home.side.item3": home.side.items[2],
+          "home.side.item4": home.side.items[3],
+        },
+      });
+
+      const programList = document.querySelector(".program-list");
+      if (programList) {
+        programList.innerHTML = "";
+        events.forEach((event, index) => {
+          if (!event) return;
+          const card = document.createElement("article");
+          card.className = "program-card ui-card-event";
+
+          const image = document.createElement("img");
+          image.className = "program-card-image";
+          image.src = event.image || "";
+          image.alt = event.name || "";
+
+          const body = document.createElement("div");
+          body.className = "program-card-body";
+
+          const title = document.createElement("h3");
+          title.className = "program-card-title";
+          title.textContent = event.name || "";
+
+          const location = document.createElement("p");
+          location.className = "program-card-location";
+          location.textContent = event.location || "";
+
+          const time = document.createElement("p");
+          time.className = "program-card-time";
+          const timeParts = [event.day, event.time].filter(Boolean);
+          time.textContent = timeParts.join(" • ");
+
+          const cta = document.createElement("a");
+          cta.className = "program-card-cta";
+          cta.textContent = "Voir sur Google Maps";
+          cta.href = mapLinks[index] || "#";
+          cta.target = "_blank";
+          cta.rel = "noreferrer noopener";
+
+          body.append(title, location, time, cta);
+          card.append(image, body);
+
+          programList.appendChild(card);
+        });
+      }
+
+      // Header translucide sur hero, puis blanc dès que le hero sort de l'écran.
+      // Ajout : si la section sous le header a un background image, on applique la classe has-hero-bg.
+      const header = document.querySelector(".site-header");
+      const hero = document.querySelector("#hero");
+      if (header && hero && "IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const bgImage = getComputedStyle(hero).backgroundImage;
+              const hasImage = bgImage && bgImage !== "none";
+              header.classList.toggle("has-hero-bg", hasImage && entry.isIntersecting);
+              if (entry.isIntersecting) {
+                // Applique le même background que le hero sur le header quand on est en haut
+                header.style.backgroundImage = bgImage;
+                header.style.backgroundSize = "cover";
+                header.style.backgroundPosition = "center";
+                header.style.backgroundRepeat = "no-repeat";
+                header.classList.remove("is-solid"); // Hero visible : header transparent sur l'image
+              } else {
+                header.style.backgroundImage = "";
+                header.classList.add("is-solid"); // Hero hors écran : header sur fond blanc
+              }
+            });
+          },
+          { threshold: 0.2 }
+        );
+        observer.observe(hero);
+      } else if (header) {
+        // Fallback simple si IntersectionObserver indisponible
+        const solidOnScroll = () => {
+          const heroRect = hero ? hero.getBoundingClientRect() : { bottom: 0 };
+          const bgImage = hero ? getComputedStyle(hero).backgroundImage : "none";
+          const hasImage = bgImage && bgImage !== "none";
+          header.classList.toggle("has-hero-bg", hasImage && heroRect.bottom > 0);
+          if (heroRect.bottom <= 0) {
+            header.style.backgroundImage = "";
+            header.classList.add("is-solid");
+          } else {
+            header.style.backgroundImage = hasImage ? bgImage : "";
+            header.style.backgroundSize = "cover";
+            header.style.backgroundPosition = "center";
+            header.style.backgroundRepeat = "no-repeat";
+            header.classList.remove("is-solid");
+          }
+        };
+        window.addEventListener("scroll", solidOnScroll, { passive: true });
+        solidOnScroll();
+      }
+    })();
+  </script>
+</body>
+</html>

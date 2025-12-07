@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Réponse — M&Ms Mariage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" 
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <!-- En-tête fixe : bouton marque + navigation mobile-first (Programme / Lieu / Dress Code / RSVP) -->
+    <header class="site-header ui-header">
+      <div class="site-header-inner ui-header-inner">
+        <a href="index.html" class="brand-button" data-content="brand.mark" aria-label="Retour à l'accueil"></a>
+        <nav class="site-nav" aria-label="Navigation principale">
+          <a href="index.html#programme" class="nav-link" data-content="nav.program"></a>
+          <a href="lieu.html" class="nav-link" data-content="nav.venue"></a>
+          <a href="rsvp.html" class="nav-link nav-primary is-active" data-content="nav.rsvp"></a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-card">
+      <!-- En-tête de formulaire : titre, sous-titre et intro -->
+      <header class="page-header">
+        <p class="eyebrow" data-content="rsvp.eyebrow">
+        </p>
+        <h1 data-content="rsvp.title"></h1>
+        <p class="page-intro" data-content="rsvp.intro">
+        </p>
+      </header>
+
+      <form class="rsvp-form">
+        <!-- Section 1 : infos de contact principales -->
+        <fieldset class="form-section">
+          <legend data-content="rsvp.section.info"></legend>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="names">
+                <span data-content="rsvp.label.names"></span>
+                <span class="required">*</span>
+              </label>
+              <input
+                type="text"
+                id="names"
+                name="names"
+                required
+                data-content="rsvp.placeholder.names"
+                placeholder="Ex : Camille Dupont & Paco Martin"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="email">
+                <span data-content="rsvp.label.email"></span>
+                <span class="required">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                data-content="rsvp.placeholder.email"
+                placeholder="vous@example.com"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="phone" data-content="rsvp.label.phone"></label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                data-content="rsvp.placeholder.phone"
+                placeholder="+33 6 12 34 56 78"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="address">
+                <span data-content="rsvp.label.address"></span>
+              </label>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                data-content="rsvp.placeholder.address"
+                placeholder="12 rue des Fleurs, 75000 Paris"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="guests">
+                <span data-content="rsvp.label.guests"></span>
+                <span class="required">*</span>
+              </label>
+              <input type="number" id="guests" name="guests" min="1" required />
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Section 2 : disponibilités événement par événement -->
+        <fieldset class="form-section">
+          <legend data-content="rsvp.section.presence"></legend>
+          <p class="section-help" data-content="rsvp.section.presenceHelp">
+          </p>
+
+          <div class="event-rsvp-list">
+            <div class="event-rsvp-item ui-form-row">
+              <div class="event-rsvp-label">
+                <span class="event-rsvp-name" data-content="rsvp.event1.name"></span>
+                <span class="event-rsvp-meta" data-content="rsvp.event1.meta"></span>
+              </div>
+              <div class="event-rsvp-options">
+                <label>
+                  <input type="radio" name="welcome_drink" value="oui" required />
+                  <span data-content="rsvp.option.present"></span>
+                </label>
+                <label>
+                  <input type="radio" name="welcome_drink" value="non" />
+                  <span data-content="rsvp.option.absent"></span>
+                </label>
+                <label>
+                  <input type="radio" name="welcome_drink" value="incertain" />
+                  <span data-content="rsvp.option.unsure"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="event-rsvp-item ui-form-row">
+              <div class="event-rsvp-label">
+                <span class="event-rsvp-name" data-content="rsvp.event2.name"></span>
+                <span class="event-rsvp-meta" data-content="rsvp.event2.meta"></span>
+              </div>
+              <div class="event-rsvp-options">
+                <label>
+                  <input type="radio" name="ceremonie" value="oui" required />
+                  <span data-content="rsvp.option.present"></span>
+                </label>
+                <label>
+                  <input type="radio" name="ceremonie" value="non" />
+                  <span data-content="rsvp.option.absent"></span>
+                </label>
+                <label>
+                  <input type="radio" name="ceremonie" value="incertain" />
+                  <span data-content="rsvp.option.unsure"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="event-rsvp-item ui-form-row">
+              <div class="event-rsvp-label">
+                <span class="event-rsvp-name" data-content="rsvp.event3.name"></span>
+                <span class="event-rsvp-meta" data-content="rsvp.event3.meta"></span>
+              </div>
+              <div class="event-rsvp-options">
+                <label>
+                  <input type="radio" name="brunch" value="oui" required />
+                  <span data-content="rsvp.option.present"></span>
+                </label>
+                <label>
+                  <input type="radio" name="brunch" value="non" />
+                  <span data-content="rsvp.option.absent"></span>
+                </label>
+                <label>
+                  <input type="radio" name="brunch" value="incertain" />
+                  <span data-content="rsvp.option.unsure"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="event-rsvp-item ui-form-row">
+              <div class="event-rsvp-label">
+                <span class="event-rsvp-name" data-content="rsvp.event4.name"></span>
+                <span class="event-rsvp-meta" data-content="rsvp.event4.meta"></span>
+              </div>
+              <div class="event-rsvp-options">
+                <label>
+                  <input type="radio" name="desert" value="oui" required />
+                  <span data-content="rsvp.option.interested"></span>
+                </label>
+                <label>
+                  <input type="radio" name="desert" value="non" />
+                  <span data-content="rsvp.option.notInterested"></span>
+                </label>
+                <label>
+                  <input type="radio" name="desert" value="incertain" />
+                  <span data-content="rsvp.option.unsure"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Section 3 : contraintes alimentaires et message libre -->
+        <fieldset class="form-section">
+          <legend data-content="rsvp.section.extra"></legend>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="diet" data-content="rsvp.label.diet"></label>
+              <textarea
+                id="diet"
+                name="diet"
+                rows="3"
+                data-content="rsvp.placeholder.diet"
+                placeholder="Ex : végétarien, sans gluten, allergie aux noix…"
+              ></textarea>
+            </div>
+
+            <div class="form-field">
+              <label for="message" data-content="rsvp.label.message"></label>
+              <textarea
+                id="message"
+                name="message"
+                rows="3"
+                data-content="rsvp.placeholder.message"
+                placeholder="On a hâte de vous retrouver !"
+              ></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" data-content="rsvp.action.submit"></button>
+          <p class="form-note" data-content="rsvp.action.note">
+            (Pour l’instant, ce bouton n’envoie nulle part : à connecter plus tard à un Google Form, un backend, etc.)
+          </p>
+        </div>
+      </form>
+    </main>
+
+    <footer class="site-footer">
+      <p data-content="footer.rsvp"></p>
+    </footer>
+  </div>
+
+  <script src="content.js"></script>
+  <script>
+    (function () {
+      const { shared, rsvpPage } = window.siteContent;
+      const events = rsvpPage.events;
+
+      applyContent({
+        text: {
+          "brand.mark": shared.brandMark,
+          "brand.names": shared.brandNames,
+          "brand.sub": shared.brandSub,
+          "nav.program": shared.nav.program,
+          "nav.venue": shared.nav.venue,
+          "nav.dresscode": shared.nav.dresscode,
+          "nav.rsvp": shared.nav.rsvp,
+          "rsvp.eyebrow": rsvpPage.eyebrow,
+          "rsvp.title": rsvpPage.title,
+          "rsvp.intro": rsvpPage.intro,
+          "rsvp.section.info": rsvpPage.sections.info,
+          "rsvp.section.presence": rsvpPage.sections.presence,
+          "rsvp.section.presenceHelp": rsvpPage.sections.presenceHelp,
+          "rsvp.section.extra": rsvpPage.sections.extra,
+          "rsvp.label.names": rsvpPage.labels.names,
+          "rsvp.label.email": rsvpPage.labels.email,
+          "rsvp.label.phone": rsvpPage.labels.phone,
+          "rsvp.label.address": rsvpPage.labels.address,
+          "rsvp.label.guests": rsvpPage.labels.guests,
+          "rsvp.label.diet": rsvpPage.labels.diet,
+          "rsvp.label.message": rsvpPage.labels.message,
+          "rsvp.event1.name": events[0].name,
+          "rsvp.event1.meta": events[0].meta,
+          "rsvp.event2.name": events[1].name,
+          "rsvp.event2.meta": events[1].meta,
+          "rsvp.event3.name": events[2].name,
+          "rsvp.event3.meta": events[2].meta,
+          "rsvp.event4.name": events[3].name,
+          "rsvp.event4.meta": events[3].meta,
+          "rsvp.option.present": rsvpPage.options.present,
+          "rsvp.option.absent": rsvpPage.options.absent,
+          "rsvp.option.unsure": rsvpPage.options.unsure,
+          "rsvp.option.interested": rsvpPage.options.interested,
+          "rsvp.option.notInterested": rsvpPage.options.notInterested,
+          "rsvp.action.submit": rsvpPage.actions.submit,
+          "rsvp.action.note": rsvpPage.actions.note,
+          "footer.rsvp": shared.footer.rsvp,
+        },
+        attrs: {
+          "rsvp.placeholder.names": { placeholder: rsvpPage.placeholders.names },
+          "rsvp.placeholder.email": { placeholder: rsvpPage.placeholders.email },
+          "rsvp.placeholder.phone": { placeholder: rsvpPage.placeholders.phone },
+          "rsvp.placeholder.address": { placeholder: rsvpPage.placeholders.address },
+          "rsvp.placeholder.diet": { placeholder: rsvpPage.placeholders.diet },
+          "rsvp.placeholder.message": { placeholder: rsvpPage.placeholders.message },
+        },
+      });
+    })();
+  </script>
+</body>
+</html>

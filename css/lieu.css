@@ -1,0 +1,47 @@
+/* ========================================================================== */
+/* Styles page Lieu                                                           */
+/* ========================================================================== */
+
+.venue-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.venue-block {
+  border: none; /* Plus de carte */
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.venue-text {
+  margin: 6px 0 10px;
+  color: var(--text-main);
+  font-size: 15px;
+}
+
+.venue-list {
+  margin: 8px 0 0;
+  padding-left: 16px;
+  color: var(--text-main);
+  font-size: 14px;
+}
+
+.venue-list li + li {
+  margin-top: 6px;
+}
+
+.venue-map-embed {
+  margin-top: 12px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(30, 15, 8, 0.12);
+}
+
+.venue-map-embed iframe {
+  width: 100%;
+  height: 220px;
+  border: 0;
+}

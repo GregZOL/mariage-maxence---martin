@@ -1,0 +1,191 @@
+/* ========================================================================== */
+/* Styles parents (header/nav, bases cartes événements, bases lignes de form) */
+/* ========================================================================== */
+
+/* Header & navigation parents */
+.ui-header {
+  position: sticky; /* Reste en haut au scroll sans recouvrir le hero au chargement */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background-color: transparent; /* Par défaut, laisse voir le fond dessous (hero) */
+  backdrop-filter: none;
+  box-shadow: none;
+  transition: all 0.3s ease; /* Transition douce comme le modèle */
+}
+
+.ui-header.is-solid {
+  background: rgba(255, 255, 255, 0.95); /* Fond unique quand le hero n’est plus visible */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(32, 20, 12, 0.16);
+
+  /* Marge/padding réactivés uniquement quand le hero n’est plus translucide */
+  /* (permet de coller le header au hero quand il est visible) */
+}
+
+.ui-header.is-solid .ui-header-inner {
+  padding: 12px 16px 8px;
+}
+
+/* Lorsque le hero est visible et porte une image, on applique cette classe pour homogénéiser le fond */
+.ui-header.has-hero-bg {
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.ui-header-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 16px; /* Pas de marge quand le hero est visible/translucide */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.brand-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 0;
+  border: none;
+  background: transparent;
+  color: var(--accent-strong); /* Texte principal du logo */
+  font-family: var(--font-serif);
+  font-size: clamp(20px, 2.2vw, 26px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color var(--speed-fast) ease;
+  box-shadow: none;
+}
+
+.brand-button:hover {
+  color: #f3d6c0; /* Teinte sable au survol */
+}
+
+.ui-header.is-solid .brand-button {
+  color: #2f1c16; /* Texte foncé lisible sur fond blanc */
+}
+
+.brand-subline {
+  max-width: 1120px;
+  margin: 0 auto 0; /* Pas de marge quand le hero est visible */
+  padding: 0 16px 0;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+.brand-names {
+  font-family: var(--font-serif);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.brand-sub {
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+  overflow-x: auto;
+  padding: 4px 2px;
+  scrollbar-width: none;
+}
+
+.site-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-link {
+  border: none;
+  background: transparent;
+  padding: 6px 4px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #f5e6d9; /* Texte sable clair */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: color var(--speed-fast) ease;
+}
+
+.nav-link:hover {
+  color: var(--accent-strong);
+}
+
+.ui-header.is-solid .nav-link {
+  color: #3d2c2a; /* Texte foncé sur fond blanc */
+}
+
+.ui-header.is-solid .nav-link:hover {
+  color: var(--accent-strong);
+}
+
+.ui-header.is-solid .brand-subline {
+  margin: 0 auto 8px;
+  padding: 0 16px 10px;
+}
+
+.ui-header.is-solid .ui-header-inner {
+  padding: 12px 16px 8px;
+}
+
+.nav-link.is-active {
+  color: #ffffff; /* Actif en blanc pour contraste */
+}
+
+.nav-primary {
+  color: #ffffff; /* Même style que liens mais en plus affirmé */
+  box-shadow: none;
+}
+
+.nav-primary:hover {
+  color: var(--accent-strong);
+}
+
+/* Bases cartes événements */
+.ui-card-event {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-soft);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base ligne de formulaire */
+.ui-form-row {
+  border-radius: 14px;
+  border: 1px dashed rgba(206, 178, 158, 0.9);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+@media (min-width: 640px) {
+  .ui-header-inner {
+    gap: 16px;
+  }
+
+  .site-nav {
+    gap: 18px;
+  }
+
+  .brand-button {
+    font-size: 24px;
+  }
+
+  .nav-link {
+    font-size: 15px;
+  }
+}

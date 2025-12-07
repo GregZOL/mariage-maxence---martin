@@ -1,0 +1,80 @@
+/* ========================================================================== */
+/* Styles page programme (cartes événements)                                  */
+/* ========================================================================== */
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 18px;
+}
+
+.event-card {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-soft);
+  background: #fffdfb;
+  padding: 16px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.event-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.event-day {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin: 0 0 4px;
+}
+
+.event-name {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.event-time {
+  font-size: 13px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.event-description {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.event-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  border: 1px solid transparent;
+}
+
+.chip-location {
+  background: var(--bg-chip-soft);
+  border-color: rgba(202, 153, 121, 0.6);
+}
+
+.chip-dresscode {
+  background: var(--bg-chip-strong);
+  border-color: rgba(175, 117, 84, 0.9);
+  color: #40241a;
+}

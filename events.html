@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Programme — M&Ms marriage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" 
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <!-- En-tête fixe : bouton marque + navigation mobile-first (Programme / Lieu / Dress Code / RSVP) -->
+    <header class="site-header ui-header">
+      <div class="site-header-inner ui-header-inner">
+        <a href="index.html" class="brand-button" data-content="brand.mark" aria-label="Retour à l'accueil"></a>
+        <nav class="site-nav" aria-label="Navigation principale">
+          <a href="index.html#programme" class="nav-link" data-content="nav.program"></a>
+          <a href="lieu.html" class="nav-link" data-content="nav.venue"></a>
+          <a href="rsvp.html" class="nav-link nav-primary" data-content="nav.rsvp"></a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-card">
+      <!-- En-tête de page : titre et courte explication du programme -->
+      <header class="page-header">
+        <p class="sous-titre_1" data-content="events.eyebrow"></p>
+        <h1 data-content="events.title"></h1>
+        <p class="page-intro" data-content="events.intro">
+        </p>
+      </header>
+
+      <!-- Grille des 4 temps forts (cartes événementielles) -->
+      <section class="cards-grid">
+        <!-- Les cartes événements sont injectées en JS -->
+      </section>
+
+      <div class="page-cta">
+        <p data-content="events.cta.text"></p>
+        <a href="rsvp.html" class="btn btn-primary" data-content="events.cta.button"></a>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p data-content="footer.events"></p>
+    </footer>
+  </div>
+
+  <script src="content.js"></script>
+  <script>
+    (function () {
+      const { shared, eventsPage } = window.siteContent;
+      const events = Array.isArray(eventsPage.items) ? eventsPage.items : [];
+
+      applyContent({
+        text: {
+          "brand.mark": shared.brandMark,
+          "brand.names": shared.brandNames,
+          "brand.sub": shared.brandSub,
+          "nav.program": shared.nav.program,
+          "nav.venue": shared.nav.venue,
+          "nav.dresscode": shared.nav.dresscode,
+          "nav.rsvp": shared.nav.rsvp,
+          "events.eyebrow": eventsPage.eyebrow,
+          "events.title": eventsPage.title,
+          "events.intro": eventsPage.intro,
+          "events.cta.text": eventsPage.cta.text,
+          "events.cta.button": eventsPage.cta.button,
+          "footer.events": shared.footer.events,
+        },
+      });
+
+      const cardsGrid = document.querySelector(".cards-grid");
+      if (cardsGrid) {
+        cardsGrid.innerHTML = "";
+        events.forEach((event) => {
+          if (!event) return;
+          const card = document.createElement("article");
+          card.className = "event-card ui-card-event";
+
+          const header = document.createElement("header");
+          header.className = "event-card-header";
+
+          const headerLeft = document.createElement("div");
+
+          const dayEl = document.createElement("p");
+          dayEl.className = "event-day";
+          dayEl.textContent = event.day || "";
+          headerLeft.appendChild(dayEl);
+
+          const nameEl = document.createElement("p");
+          nameEl.className = "event-name";
+          nameEl.textContent = event.name || "";
+          headerLeft.appendChild(nameEl);
+
+          const timeEl = document.createElement("p");
+          timeEl.className = "event-time";
+          timeEl.textContent = event.time || "";
+
+          header.append(headerLeft, timeEl);
+
+          const descriptionEl = document.createElement("p");
+          descriptionEl.className = "event-description";
+          descriptionEl.textContent = event.description || "";
+
+          const meta = document.createElement("div");
+          meta.className = "event-meta";
+
+          if (event.location) {
+            const chipLocation = document.createElement("span");
+            chipLocation.className = "chip chip-location";
+            chipLocation.textContent = event.location;
+            meta.appendChild(chipLocation);
+          }
+
+          if (event.dresscode) {
+            const chipDresscode = document.createElement("span");
+            chipDresscode.className = "chip chip-dresscode";
+            chipDresscode.textContent = event.dresscode;
+            meta.appendChild(chipDresscode);
+          }
+
+          card.append(header, descriptionEl);
+          if (meta.children.length) {
+            card.appendChild(meta);
+          }
+
+          cardsGrid.appendChild(card);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lieu — Chambon-sur-Cisse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" 
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+  <script src="mapLinks.js"></script>
+</head>
+<body>
+  <div class="page-shell">
+    <!-- Header parent -->
+    <header class="site-header ui-header">
+      <div class="site-header-inner ui-header-inner">
+        <a href="index.html" class="brand-button" data-content="brand.mark" aria-label="Retour à l'accueil"></a>
+        <nav class="site-nav" aria-label="Navigation principale">
+          <a href="index.html#programme" class="nav-link" data-content="nav.program"></a>
+          <a href="lieu.html" class="nav-link is-active" data-content="nav.venue"></a>
+          <a href="rsvp.html" class="nav-link nav-primary" data-content="nav.rsvp"></a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Lieu -->
+    <section class="hero-section hero-section--lieu">
+      <div class="hero-bg" style="background-image: url('assets/lieu.jpg');">
+        <div class="hero-gradient"></div>
+      </div>
+      <div class="hero-content">
+        <h1 class="hero-title" data-content="venue.title"></h1>
+        <p class="hero-date" data-content="venue.address"></p>
+      </div>
+    </section>
+
+    <main class="main-card">
+      <header class="page-header">
+        <p class="sous-titre_1" data-content="venue.eyebrow"></p>
+        <h1 data-content="venue.title"></h1>
+        <p class="page-intro" data-content="venue.intro"></p>
+      </header>
+
+      <section class="venue-layout">
+        <div class="venue-block">
+          <h3 data-content="venue.addressTitle"></h3>
+          <p class="venue-text" data-content="venue.address"></p>
+          <a class="btn btn-primary" id="venue-map-link" target="_blank" rel="noreferrer noopener" data-content="venue.mapCta"></a>
+          <div class="venue-map-embed">
+            <iframe
+              id="venue-map-iframe"
+              src=""
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="venue-block">
+          <h3 data-content="venue.accessTitle"></h3>
+          <ul class="venue-list">
+            <li data-content="venue.access1"></li>
+            <li data-content="venue.access2"></li>
+            <li data-content="venue.access3"></li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <div class="venue-block">
+          <h3 data-content="venue.tipsTitle"></h3>
+          <ul class="venue-list">
+            <li data-content="venue.tip1"></li>
+            <li data-content="venue.tip2"></li>
+            <li data-content="venue.tip3"></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p data-content="footer.events"></p>
+    </footer>
+  </div>
+
+  <script src="content.js"></script>
+  <script>
+    (function () {
+      const { shared, venuePage } = window.siteContent;
+      const mapLink = (window.mapLinks && window.mapLinks.venue) || "#";
+      const mapEmbed = (window.mapLinks && window.mapLinks.venueEmbed) || "";
+
+      applyContent({
+        text: {
+          "brand.mark": shared.brandMark,
+          "brand.names": shared.brandNames,
+          "brand.sub": shared.brandSub,
+          "nav.program": shared.nav.program,
+          "nav.venue": shared.nav.venue,
+          "nav.dresscode": shared.nav.dresscode,
+          "nav.rsvp": shared.nav.rsvp,
+          "venue.eyebrow": venuePage.eyebrow,
+          "venue.title": venuePage.title,
+          "venue.intro": venuePage.intro,
+          "venue.addressTitle": venuePage.addressTitle,
+          "venue.address": venuePage.address,
+          "venue.accessTitle": venuePage.accessTitle,
+          "venue.access1": venuePage.access[0],
+          "venue.access2": venuePage.access[1],
+          "venue.access3": venuePage.access[2],
+          "venue.tipsTitle": venuePage.tipsTitle,
+          "venue.tip1": venuePage.tips[0],
+          "venue.tip2": venuePage.tips[1],
+          "venue.tip3": venuePage.tips[2],
+          "venue.mapCta": venuePage.mapCta,
+          "footer.events": shared.footer.events,
+        },
+      });
+
+      const mapBtn = document.getElementById("venue-map-link");
+      if (mapBtn) mapBtn.href = mapLink;
+
+      const mapIframe = document.getElementById("venue-map-iframe");
+      if (mapIframe && mapEmbed) {
+        mapIframe.src = mapEmbed;
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+/* ========================================================================== */
+/* Styles spécifiques page d'accueil (hero, bloc sous-hero, programme home)   */
+/* ========================================================================== */
+
+/* Hero plein écran */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 120px 0 120px; /* Pas de marge horizontale */
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  transform: scale(1.02);
+}
+
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.25), transparent 45%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.32) 0%, rgba(0, 0, 0, 0.62) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.hero-content .hero-title {
+  color: #ffffff;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.hero-date {
+  font-size: clamp(18px, 3vw, 26px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+  margin: 0;
+}
+
+
+.scroll-mouse {
+  width: 26px;
+  height: 42px;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  border-radius: 14px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 6px;
+  animation: bounce 2s infinite;
+}
+
+.scroll-wheel {
+  width: 4px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 6px;
+  animation: wheel 1.6s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+@keyframes wheel {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(10px); opacity: 0; }
+}
+
+/* Bloc sous-hero */
+.after-hero-card { margin-top: 24px; }
+
+.after-hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.after-hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Infos clés */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+
+.info-item dt {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-soft);
+  margin-bottom: 4px;
+}
+
+.info-item dd {
+  margin: 0;
+  font-size: 14px;
+}
+
+.hero-side {
+  display: flex;
+  align-items: stretch;
+}
+
+.side-card {
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(234, 212, 198, 0.9);
+  background: linear-gradient(145deg, rgba(255, 247, 240, 0.92), rgba(245, 227, 212, 0.92));
+  padding: 16px 18px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+}
+
+.side-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.side-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  color: var(--text-main);
+}
+
+.side-list li + li { margin-top: 6px; }
+
+/* Programme sur home */
+.program-section {
+  scroll-margin-top: 110px;
+  margin-top: 32px; /* Ajoute un espace supplémentaire entre hero/sous-hero et programme */
+}
+
+.program-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.program-card {
+  --card-bg: hsl(40 30% 97%);
+  --card-border: hsl(38 30% 88%);
+  --card-shadow: 0 4px 20px -4px hsl(15 50% 48% / 0.1);
+  --card-radius: 1rem;
+  border-radius: var(--card-radius);
+  border: 1px solid var(--card-border);
+  background: hsl(38 45% 85%);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  display: grid;
+  grid-template-columns: 1fr;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeUp 0.6s ease-out forwards;
+  transform: translateY(0);
+  font-family: "Poppins", var(--font-sans); /* Typo et lissage du modèle */
+  color: hsl(30 20% 20%); /* Couleur foreground */
+}
+
+.program-card-image {
+  display: block;
+  width: 100%;
+  height: 220px; /* Hauteur réduite pour garder la carte visible entièrement */
+  object-fit: cover; /* Couvre la zone sans déformer */
+  filter: saturate(0.96);
+  transition: transform 0.5s ease;
+}
+
+.program-card-body {
+  padding: 24px 24px 20px; /* Rappelle le padding généreux du modèle */
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: hsl(40 35% 98%);
+  color: hsl(30 20% 20%);
+}
+
+.program-card-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: hsl(30 20% 20%);
+}
+
+.program-card-location {
+  margin: 0;
+  font-size: 14px;
+  color: hsl(30 20% 20%);
+  font-weight: 600;
+}
+
+.program-card-time {
+  margin: 0;
+  font-size: 13px;
+  color: hsl(30 15% 45%);
+}
+
+.program-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -8px hsl(15 50% 48% / 0.18);
+}
+
+.program-card:hover .program-card-image {
+  transform: scale(1.1);
+}
+
+.program-card-cta {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: hsl(15 50% 48%);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.program-card-cta:hover {
+  color: hsl(15 50% 58%);
+}
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive home */
+@media (min-width: 640px) {
+  .info-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 900px) {
+  .hero-section { padding: 160px 0 140px; } /* Retire la marge horizontale aussi sur desktop */
+  .after-hero {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    align-items: start;
+  }
+  .info-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}

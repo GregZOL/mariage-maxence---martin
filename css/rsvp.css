@@ -1,0 +1,136 @@
+/* ========================================================================== */
+/* Styles page RSVP (formulaire)                                              */
+/* ========================================================================== */
+
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-section {
+  border: 1px solid rgba(230, 211, 197, 0.9);
+  border-radius: 18px;
+  padding: 14px 16px 16px;
+  background: #fffbf7;
+}
+
+.form-section legend {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-soft);
+  padding: 0 4px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-field label {
+  font-size: 13px;
+  color: var(--text-main);
+}
+
+.required { color: #c45c4a; }
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+textarea {
+  border-radius: 12px;
+  border: 1px solid rgba(196, 167, 148, 0.6);
+  padding: 8px 10px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  background: #fffdfb;
+  transition: border-color var(--speed-fast) ease, box-shadow var(--speed-fast) ease,
+    background var(--speed-fast) ease;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(225, 166, 138, 0.6);
+  background: #ffffff;
+}
+
+textarea { resize: vertical; min-height: 80px; }
+
+.section-help {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.event-rsvp-list {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.event-rsvp-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 11px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px dashed rgba(206, 178, 158, 0.9);
+}
+
+.event-rsvp-label {
+  min-width: 200px;
+  flex: 1 1 200px;
+}
+
+.event-rsvp-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.event-rsvp-meta {
+  display: block;
+  font-size: 12px;
+  color: var(--text-soft);
+}
+
+.event-rsvp-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: center;
+}
+
+.event-rsvp-options label {
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.form-actions {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.form-note {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-soft);
+}
