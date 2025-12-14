@@ -14,6 +14,13 @@
   padding: 120px 0 120px; /* Pas de marge horizontale */
 }
 
+.hero-section--home {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08), transparent 38%),
+    radial-gradient(circle at 80% 10%, rgba(255, 226, 206, 0.18), transparent 36%),
+    linear-gradient(135deg, #2f1c16 0%, #5d3b2f 40%, #8b5e48 100%);
+}
+
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -50,10 +57,19 @@
 .hero-date {
   font-size: clamp(18px, 3vw, 26px);
   letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.92);
+  text-transform: none;
+  color: rgba(255, 255, 255, 0.9);
   text-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
   margin: 0;
+}
+
+.hero-location {
+  font-size: clamp(16px, 2.4vw, 22px);
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: rgba(255, 255, 255, 0.86);
+  margin: 0;
+  text-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
 }
 
 

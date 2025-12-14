@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Lieu — Chambon-sur-Cisse</title>
+  <title>Lieu — Marriage Maxence et Martin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -66,22 +66,14 @@
       <section>
         <div class="venue-block">
           <h3 data-content="venue.accessTitle"></h3>
-          <ul class="venue-list">
-            <li data-content="venue.access1"></li>
-            <li data-content="venue.access2"></li>
-            <li data-content="venue.access3"></li>
-          </ul>
+          <ul class="venue-list" data-content="venue.accessList"></ul>
         </div>
       </section>
 
       <section>
         <div class="venue-block">
           <h3 data-content="venue.tipsTitle"></h3>
-          <ul class="venue-list">
-            <li data-content="venue.tip1"></li>
-            <li data-content="venue.tip2"></li>
-            <li data-content="venue.tip3"></li>
-          </ul>
+          <ul class="venue-list" data-content="venue.tipsList"></ul>
         </div>
       </section>
     </main>
@@ -113,17 +105,25 @@
           "venue.addressTitle": venuePage.addressTitle,
           "venue.address": venuePage.address,
           "venue.accessTitle": venuePage.accessTitle,
-          "venue.access1": venuePage.access[0],
-          "venue.access2": venuePage.access[1],
-          "venue.access3": venuePage.access[2],
           "venue.tipsTitle": venuePage.tipsTitle,
-          "venue.tip1": venuePage.tips[0],
-          "venue.tip2": venuePage.tips[1],
-          "venue.tip3": venuePage.tips[2],
           "venue.mapCta": venuePage.mapCta,
           "footer.events": shared.footer.events,
         },
       });
+
+      const buildList = (selector, items = []) => {
+        const list = document.querySelector(selector);
+        if (!list) return;
+        list.innerHTML = "";
+        items.filter(Boolean).forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          list.appendChild(li);
+        });
+      };
+
+      buildList('[data-content="venue.accessList"]', venuePage.access);
+      buildList('[data-content="venue.tipsList"]', venuePage.tips);
 
       const mapBtn = document.getElementById("venue-map-link");
       if (mapBtn) mapBtn.href = mapLink;

@@ -5,7 +5,7 @@
     shared: {
       brandMark: "Maxence & Martin",
       brandNames: "Maxence & Martin",
-      brandSub: "Mariage à la poterie",
+      brandSub: "Chambon-sur-Cisse, Loir-et-Cher",
       nav: {
         home: "Accueil",
         program: "Programme",
@@ -21,45 +21,46 @@
     },
 
     home: {
-      eyebrow: "du 31 juillet au 3 août • Chambon-sur-Cisse, Loir-et-Cher",
+      eyebrow: "31 juillet - 3 août 2026",
       title: "Mariage de Maxence & Martin",
+      location: "Chambon-sur-Cisse, Loir-et-Cher",
       description:
-        "Palceholder",
+        "Un long week-end au cœur du Loir-et-Cher pour célébrer notre mariage entourés de nos proches.",
       buttons: {
         program: "Découvrir le programme",
         rsvp: "Confirmer ma présence",
       },
       info: {
-        date: { label: "Date", value: "5 & 6 juin 2026" },
-        location: { label: "Lieu", value: "La Poteie. Chambon-sur-Cisse" },
-        dresscode: { label: "Dress code", value: "Palceholder" },
+        date: { label: "Date", value: "31 juillet - 3 août 2026" },
+        location: { label: "Lieu", value: "Chambon-sur-Cisse, Loir-et-Cher" },
+        dresscode: { label: "Dress code", value: "Tenue chic et estivale" },
       },
       side: {
         title: "Infos rapides",
         items: [
-          "",
-          "",
-          "",
-          "",
+          "Cérémonie à l’église Saint-Secondin (Valencisse) le samedi à 16h.",
+          "Vin d’honneur, dîner et soirée à La Poterie, Chambon-sur-Cisse.",
+          "Gare la plus proche : Blois-Chambord (15 min en voiture).",
+          "En voiture : environ 2h15 depuis Paris.",
         ],
       },
     },
 
     eventsPage: {
       eyebrow: "Programme du week-end",
-      title: " Le Programme",
+      title: "Le programme",
       intro:
-        "3 jours de célébrations",
+        "Trois jours pour se retrouver, trinquer et faire la fête ensemble.",
       items: [
         {
           image: "assets/event_1.jpg",
           day: "Vendredi 31 juillet",
-          name: "Welcome drink",
-          time: "A partir de 18h",
+          name: "Verre d'accueil",
+          time: "À partir de 18h",
           description:
-            "Palceholder",
+            "On se retrouve pour un premier verre et lancer le week-end en douceur.",
           location: "Le Molineuf",
-          dresscode: "Palceholder",
+          dresscode: "Tenue détendue",
         },
         {
           image: "assets/event_2.jpg",
@@ -67,28 +68,28 @@
           name: "Messe de mariage",
           time: "16h",
           description:
-            "Palceholder",
+            "Cérémonie à l’église Saint-Secondin, entourés de nos proches.",
           location: "Eglise Saint-Secondin, Valencisse",
-          dresscode: "Palceholder",
+          dresscode: "Tenue chic",
         },
         {
           image: "assets/event_3.jpg",
           day: "Samedi 1er août",
-          name: "Vin d'honneur, dîner et soirée",
-          time: "A partir de 18h",
+          name: "Vin d’honneur, dîner et soirée",
+          time: "À partir de 18h",
           description:
-            "",
+            "Le grand moment à La Poterie : vin d’honneur, dîner puis soirée jusqu’au bout de la nuit.",
           location: "La Poterie, Chambon-sur-Cisse",
           dresscode: "Tenue légère & couleurs pastel",
         },
         {
           image: "assets/event_4.jpg",
-          day: "Optionnel",
-          name: "Excursion dans le désert",
-          time: "Dimanche (horaires à confirmer)",
+          day: "Dimanche 2 août",
+          name: "Brunch et au revoir",
+          time: "Fin de matinée",
           description:
-            "Pour ceux qui souhaitent prolonger l’aventure, nous organisons une excursion dans le désert (non incluse dans le budget du mariage).",
-          location: "Désert d’Agafay",
+            "Un brunch pour prolonger les discussions de la veille avant les premiers départs.",
+          location: "À proximité de La Poterie",
           dresscode: "Tenue confortable",
         },
       ],
@@ -99,23 +100,20 @@
     },
 
     venuePage: {
-      eyebrow: "Lieu du mariage",
-      title: "Chambon-sur-Cisse",
+      eyebrow: "📍 Lieu",
+      title: "La Poterie",
       intro:
-        "Nous nous retrouvons dans le charmant village de Chambon-sur-Cisse, au cœur du Loir-et-Cher. Voici les infos pratiques pour vous rendre sur place et profiter au mieux des environs.",
+        "Nous nous retrouvons à La Poterie, un lieu familial niché à Chambon-sur-Cisse. Voici les informations pour vous y rendre et où loger à proximité.",
       addressTitle: "Adresse",
-      address: "Chambon-sur-Cisse, 41190, France",
+      address: "La Poterie, 12 route de Blois, Chambon-sur-Cisse, Loir-et-Cher (42)",
       accessTitle: "Accès",
       access: [
-        "En train : gare de Blois-Chambord, puis 20 minutes en voiture.",
-        "En voiture : compter 2h de Paris, 2h30 de Bordeaux.",
-        "Parking : possibilité de se garer près du lieu (suivre les indications).",
+        "En train : gare de Blois-Chambord, puis 15 min en voiture.",
+        "En voiture : ~2h15 depuis Paris.",
       ],
-      tipsTitle: "À savoir",
+      tipsTitle: "Logements",
       tips: [
-        "Prévoyez des chaussures confortables pour les déplacements dans le domaine.",
-        "Les soirées peuvent être fraîches : emportez une petite veste.",
-        "Nous mettrons des navettes ponctuelles depuis la gare (horaires à confirmer).",
+        "De nombreux gîtes et hôtels sont disponibles dans les environs de Chambon-sur-Cisse, Molineuf, Onzain, Blois, Chaumont-sur-Loire. Nous vous partagerons une liste de suggestions prochainement.",
       ],
       mapCta: "Ouvrir sur Google Maps",
     },
@@ -149,10 +147,10 @@
         message: "On a hâte de vous retrouver !",
       },
       events: [
-        { name: "Welcome drink – Jeudi soir", meta: "19h00 — rooftop de l’hôtel" },
-        { name: "Cérémonie & dîner – Vendredi", meta: "16h00 — Domaine La Palmeraie" },
-        { name: "Brunch – Samedi", meta: "11h00 — Riad privé" },
-        { name: "Excursion dans le désert", meta: "Dimanche (optionnel)" },
+        { name: "Verre d'accueil — Vendredi", meta: "18h — Le Molineuf" },
+        { name: "Cérémonie — Samedi", meta: "16h — Église Saint-Secondin, Valencisse" },
+        { name: "Vin d’honneur, dîner & soirée — Samedi", meta: "18h — La Poterie" },
+        { name: "Brunch — Dimanche", meta: "Fin de matinée — La Poterie / alentours" },
       ],
       options: {
         present: "Présent",
