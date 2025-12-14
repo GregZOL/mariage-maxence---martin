@@ -247,8 +247,9 @@
     (function () {
       const { shared, rsvpPage } = window.siteContent;
       const events = rsvpPage.events;
-      const GOOGLE_SCRIPT_URL = https://docs.google.com/spreadsheets/d/1S2maiedvy7lJieagP0yIV78BHZJPE1gs0Uo667125oI/edit?gid=0#gid=0
-        window.GOOGLE_SCRIPT_URL || "https://script.google.com/macros/s/PASTE_WEB_APP_ID/exec";
+      const GOOGLE_SCRIPT_URL =
+        window.GOOGLE_SCRIPT_URL ||
+        "https://script.google.com/macros/s/AKfycbxGjtncs1FufA3uFS-jqdViCIpNoVmihqFFPFIbux3_0-xUpgiVq69qV97FbyqoN1x1NA/exec";
 
       applyContent({
         text: {
@@ -325,20 +326,49 @@
           const formData = new FormData(form);
           formData.append("timestamp", new Date().toISOString());
 
+          // Encodage URL (simple request) pour maximiser la compatibilité Apps Script.
+          const urlEncodedData = new URLSearchParams();
+          formData.forEach((value, key) => {
+            urlEncodedData.append(key, value);
+          });
+
           try {
-            const response = await fetch(GOOGLE_SCRIPT_URL, {
-              method: "POST",
-              body: formData,
-            });
+            const send = (mode = "cors") =>
+              fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                body: urlEncodedData,
+                headers: {
+                  "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+                },
+                mode,
+              });
 
-            if (!response.ok) {
+            const response = await send("cors");
+
+            if (response.type === "opaque") {
+              setStatus("Merci ! Réponse envoyée (réponse opaque, vérifier le Google Sheet).");
+              form.reset();
+            } else if (!response.ok) {
               throw new Error(`HTTP ${response.status}`);
+            } else {
+              setStatus("Merci ! Votre réponse a bien été enregistrée.");
+              form.reset();
             }
-
-            setStatus("Merci ! Votre réponse a bien été enregistrée.");
-            form.reset();
           } catch (error) {
-            setStatus("Échec de l’envoi. Vérifiez votre connexion ou réessayez plus tard.", true);
+            try {
+              await fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                body: urlEncodedData,
+                headers: {
+                  "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+                },
+                mode: "no-cors",
+              });
+              setStatus("Réponse envoyée (mode sans vérification). Vérifiez qu’elle apparaît dans le Google Sheet.");
+              form.reset();
+            } catch (fallbackError) {
+              setStatus("Échec de l’envoi. Vérifiez votre connexion ou réessayez plus tard.", true);
+            }
           } finally {
             if (submitBtn) submitBtn.disabled = false;
           }
