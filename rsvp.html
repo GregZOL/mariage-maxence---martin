@@ -36,7 +36,7 @@
         </p>
       </header>
 
-      <form class="rsvp-form">
+      <form class="rsvp-form" action="https://script.google.com/macros/s/AKfycbxGjtncs1FufA3uFS-jqdViCIpNoVmihqFFPFIbux3_0-xUpgiVq69qV97FbyqoN1x1NA/exec" method="POST" target="rsvp-transport">
         <!-- Section 1 : infos de contact principales -->
         <fieldset class="form-section">
           <legend data-content="rsvp.section.info"></legend>
@@ -235,6 +235,7 @@
           <p class="form-status" aria-live="polite"></p>
         </div>
       </form>
+      <iframe name="rsvp-transport" class="rsvp-transport" title="RSVP transport"></iframe>
     </main>
 
     <footer class="site-footer">
@@ -303,8 +304,6 @@
 
       const form = document.querySelector(".rsvp-form");
       const statusEl = document.querySelector(".form-status");
-      const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
-
       const setStatus = (message, isError = false) => {
         if (!statusEl) return;
         statusEl.textContent = message || "";
@@ -312,66 +311,13 @@
       };
 
       if (form) {
-        form.addEventListener("submit", async (event) => {
-          event.preventDefault();
+        // Assure l'action correcte en cas d'override externe.
+        form.action = GOOGLE_SCRIPT_URL;
+        form.method = "POST";
+        form.target = "rsvp-transport";
 
-          if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PASTE_WEB_APP_ID")) {
-            setStatus("Configurez l’URL du script Google Apps Script avant d’envoyer.", true);
-            return;
-          }
-
+        form.addEventListener("submit", () => {
           setStatus("Envoi en cours…");
-          if (submitBtn) submitBtn.disabled = true;
-
-          const formData = new FormData(form);
-          formData.append("timestamp", new Date().toISOString());
-
-          // Encodage URL (simple request) pour maximiser la compatibilité Apps Script.
-          const urlEncodedData = new URLSearchParams();
-          formData.forEach((value, key) => {
-            urlEncodedData.append(key, value);
-          });
-
-          try {
-            const send = (mode = "cors") =>
-              fetch(GOOGLE_SCRIPT_URL, {
-                method: "POST",
-                body: urlEncodedData,
-                headers: {
-                  "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-                },
-                mode,
-              });
-
-            const response = await send("cors");
-
-            if (response.type === "opaque") {
-              setStatus("Merci ! Réponse envoyée (réponse opaque, vérifier le Google Sheet).");
-              form.reset();
-            } else if (!response.ok) {
-              throw new Error(`HTTP ${response.status}`);
-            } else {
-              setStatus("Merci ! Votre réponse a bien été enregistrée.");
-              form.reset();
-            }
-          } catch (error) {
-            try {
-              await fetch(GOOGLE_SCRIPT_URL, {
-                method: "POST",
-                body: urlEncodedData,
-                headers: {
-                  "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-                },
-                mode: "no-cors",
-              });
-              setStatus("Réponse envoyée (mode sans vérification). Vérifiez qu’elle apparaît dans le Google Sheet.");
-              form.reset();
-            } catch (fallbackError) {
-              setStatus("Échec de l’envoi. Vérifiez votre connexion ou réessayez plus tard.", true);
-            }
-          } finally {
-            if (submitBtn) submitBtn.disabled = false;
-          }
         });
       }
     })();
