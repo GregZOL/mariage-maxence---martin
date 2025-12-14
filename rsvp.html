@@ -327,19 +327,36 @@
           formData.append("timestamp", new Date().toISOString());
 
           try {
-            const response = await fetch(GOOGLE_SCRIPT_URL, {
-              method: "POST",
-              body: formData,
-            });
+            const send = (mode = "cors") =>
+              fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                body: formData,
+                mode,
+              });
 
-            if (!response.ok) {
+            const response = await send("cors");
+
+            if (response.type === "opaque") {
+              setStatus("Merci ! Réponse envoyée (réponse opaque, vérifier le Google Sheet).");
+              form.reset();
+            } else if (!response.ok) {
               throw new Error(`HTTP ${response.status}`);
+            } else {
+              setStatus("Merci ! Votre réponse a bien été enregistrée.");
+              form.reset();
             }
-
-            setStatus("Merci ! Votre réponse a bien été enregistrée.");
-            form.reset();
           } catch (error) {
-            setStatus("Échec de l’envoi. Vérifiez votre connexion ou réessayez plus tard.", true);
+            try {
+              await fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                body: formData,
+                mode: "no-cors",
+              });
+              setStatus("Réponse envoyée (mode sans vérification). Vérifiez qu’elle apparaît dans le Google Sheet.");
+              form.reset();
+            } catch (fallbackError) {
+              setStatus("Échec de l’envoi. Vérifiez votre connexion ou réessayez plus tard.", true);
+            }
           } finally {
             if (submitBtn) submitBtn.disabled = false;
           }
