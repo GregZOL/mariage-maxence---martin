@@ -311,6 +311,7 @@
 
       const form = document.querySelector(".rsvp-form");
       const statusEl = document.querySelector(".form-status");
+      const transportFrame = document.querySelector('iframe[name="rsvp-transport"]');
       const setStatus = (message, isError = false) => {
         if (!statusEl) return;
         statusEl.textContent = message || "";
@@ -334,9 +335,35 @@
           form.appendChild(tsInput);
         }
 
+        let isSubmitting = false;
+        let timeoutId;
+
+        const clearPending = () => {
+          if (timeoutId) {
+            clearTimeout(timeoutId);
+            timeoutId = null;
+          }
+          isSubmitting = false;
+        };
+
+        if (transportFrame) {
+          transportFrame.addEventListener("load", () => {
+            if (!isSubmitting) return;
+            clearPending();
+            setStatus("Merci ! Votre réponse a bien été enregistrée.");
+            form.reset();
+          });
+        }
+
         form.addEventListener("submit", () => {
           tsInput.value = new Date().toISOString();
+          isSubmitting = true;
           setStatus("Envoi en cours…");
+          if (timeoutId) clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => {
+            if (!isSubmitting) return;
+            setStatus("Envoi en cours… (cela peut prendre quelques secondes)", false);
+          }, 4000);
         });
       }
     })();
