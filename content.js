@@ -139,10 +139,10 @@
         message: "Un petit mot pour nous ?",
       },
       placeholders: {
-        names: "Ex : Camille Dupont & Paco Martin",
+        names: "Ex : Grégoire Louis",
         email: "vous@example.com",
-        phone: "+33 6 12 34 56 78",
-        address: "12 rue des Fleurs, 75000 Paris",
+        phone: "+33 6 99 04 65 68",
+        address: "119 rue de Charonne, 75011 Paris",
         diet: "Ex : végétarien, sans gluten, allergie aux noix…",
         message: "On a hâte de vous retrouver !",
       },
