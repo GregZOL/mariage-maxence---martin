@@ -15,6 +15,8 @@
 }
 
 .hero-section--home {
+  min-height: 50vh;
+  padding: 80px 0;
   background:
     radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08), transparent 38%),
     radial-gradient(circle at 80% 10%, rgba(255, 226, 206, 0.18), transparent 36%),
