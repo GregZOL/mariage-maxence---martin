@@ -15,7 +15,7 @@
 <body>
   <div class="page-shell">
     <!-- En-tête fixe : bouton marque + navigation mobile-first (Programme / Lieu / Dress Code / RSVP) -->
-    <header class="site-header ui-header">
+    <header class="site-header ui-header is-solid">
       <div class="site-header-inner ui-header-inner">
         <a href="index.html" class="brand-button" data-content="brand.mark" aria-label="Retour à l'accueil"></a>
         <nav class="site-nav" aria-label="Navigation principale">
@@ -231,8 +231,8 @@
         <div class="form-actions">
           <button type="submit" class="btn btn-primary" data-content="rsvp.action.submit"></button>
           <p class="form-note" data-content="rsvp.action.note">
-            (Pour l’instant, ce bouton n’envoie nulle part : à connecter plus tard à un Google Form, un backend, etc.)
           </p>
+          <p class="form-status" aria-live="polite"></p>
         </div>
       </form>
     </main>
@@ -247,6 +247,8 @@
     (function () {
       const { shared, rsvpPage } = window.siteContent;
       const events = rsvpPage.events;
+      const GOOGLE_SCRIPT_URL =
+        window.GOOGLE_SCRIPT_URL || "https://script.google.com/macros/s/PASTE_WEB_APP_ID/exec";
 
       applyContent({
         text: {
@@ -297,6 +299,51 @@
           "rsvp.placeholder.message": { placeholder: rsvpPage.placeholders.message },
         },
       });
+
+      const form = document.querySelector(".rsvp-form");
+      const statusEl = document.querySelector(".form-status");
+      const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
+
+      const setStatus = (message, isError = false) => {
+        if (!statusEl) return;
+        statusEl.textContent = message || "";
+        statusEl.classList.toggle("is-error", Boolean(isError));
+      };
+
+      if (form) {
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PASTE_WEB_APP_ID")) {
+            setStatus("Configurez l’URL du script Google Apps Script avant d’envoyer.", true);
+            return;
+          }
+
+          setStatus("Envoi en cours…");
+          if (submitBtn) submitBtn.disabled = true;
+
+          const formData = new FormData(form);
+          formData.append("timestamp", new Date().toISOString());
+
+          try {
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
+              method: "POST",
+              body: formData,
+            });
+
+            if (!response.ok) {
+              throw new Error(`HTTP ${response.status}`);
+            }
+
+            setStatus("Merci ! Votre réponse a bien été enregistrée.");
+            form.reset();
+          } catch (error) {
+            setStatus("Échec de l’envoi. Vérifiez votre connexion ou réessayez plus tard.", true);
+          } finally {
+            if (submitBtn) submitBtn.disabled = false;
+          }
+        });
+      }
     })();
   </script>
 </body>

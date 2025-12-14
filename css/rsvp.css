@@ -134,3 +134,13 @@ textarea { resize: vertical; min-height: 80px; }
   font-size: 12px;
   color: var(--text-soft);
 }
+
+.form-status {
+  margin: 0;
+  font-size: 13px;
+  color: #1b7f5c;
+}
+
+.form-status.is-error {
+  color: #c45c4a;
+}

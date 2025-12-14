@@ -162,7 +162,7 @@
       actions: {
         submit: "Envoyer ma réponse",
         note:
-          "(Pour l’instant, ce bouton n’envoie nulle part : à connecter plus tard à un Google Form, un backend, etc.)",
+          "Les réponses sont envoyées et stockées dans notre Google Sheet.",
       },
     },
   };
