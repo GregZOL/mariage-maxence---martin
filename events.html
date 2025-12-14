@@ -83,6 +83,15 @@
           const card = document.createElement("article");
           card.className = "event-card ui-card-event";
 
+          const imageWrapper = document.createElement("div");
+          imageWrapper.className = "event-card-image";
+          if (event.image) {
+            imageWrapper.style.backgroundImage = `url('${event.image}')`;
+          }
+
+          const body = document.createElement("div");
+          body.className = "event-card-body";
+
           const header = document.createElement("header");
           header.className = "event-card-header";
 
@@ -125,10 +134,12 @@
             meta.appendChild(chipDresscode);
           }
 
-          card.append(header, descriptionEl);
+          body.append(header, descriptionEl);
           if (meta.children.length) {
-            card.appendChild(meta);
+            body.appendChild(meta);
           }
+
+          card.append(imageWrapper, body);
 
           cardsGrid.appendChild(card);
         });

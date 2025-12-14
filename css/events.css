@@ -4,18 +4,40 @@
 
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 800px));
+  justify-content: center;
+  gap: 24px;
 }
 
 .event-card {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  grid-template-rows: 80% 20%;
+  overflow: hidden;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-soft);
   background: #fffdfb;
-  padding: 16px 16px 14px;
+}
+
+.event-card-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f5ede6;
+}
+
+.event-card-body {
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+  justify-content: center;
+  background: #fffdfb;
 }
 
 .event-card-header {
@@ -54,8 +76,8 @@
 .event-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 4px;
+  gap: 6px;
+  margin-top: 2px;
 }
 
 .chip {
