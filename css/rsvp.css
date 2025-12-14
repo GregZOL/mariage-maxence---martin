@@ -144,7 +144,3 @@ textarea { resize: vertical; min-height: 80px; }
 .form-status.is-error {
   color: #c45c4a;
 }
-
-.rsvp-transport {
-  display: none;
-}
