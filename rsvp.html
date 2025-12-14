@@ -36,7 +36,14 @@
         </p>
       </header>
 
-      <form class="rsvp-form" action="https://script.google.com/macros/s/AKfycbxGjtncs1FufA3uFS-jqdViCIpNoVmihqFFPFIbux3_0-xUpgiVq69qV97FbyqoN1x1NA/exec" method="POST" target="rsvp-transport">
+      <form
+        class="rsvp-form"
+        action="https://script.google.com/macros/s/AKfycbxGjtncs1FufA3uFS-jqdViCIpNoVmihqFFPFIbux3_0-xUpgiVq69qV97FbyqoN1x1NA/exec"
+        method="POST"
+        target="rsvp-transport"
+        enctype="application/x-www-form-urlencoded"
+        accept-charset="UTF-8"
+      >
         <!-- Section 1 : infos de contact principales -->
         <fieldset class="form-section">
           <legend data-content="rsvp.section.info"></legend>
@@ -315,8 +322,20 @@
         form.action = GOOGLE_SCRIPT_URL;
         form.method = "POST";
         form.target = "rsvp-transport";
+        form.enctype = "application/x-www-form-urlencoded";
+        form.acceptCharset = "UTF-8";
+
+        // Ajoute/alimente un champ timestamp pour éviter un payload vide.
+        let tsInput = form.querySelector('input[name="timestamp"]');
+        if (!tsInput) {
+          tsInput = document.createElement("input");
+          tsInput.type = "hidden";
+          tsInput.name = "timestamp";
+          form.appendChild(tsInput);
+        }
 
         form.addEventListener("submit", () => {
+          tsInput.value = new Date().toISOString();
           setStatus("Envoi en cours…");
         });
       }
