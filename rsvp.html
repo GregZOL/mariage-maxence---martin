@@ -330,7 +330,7 @@
         // Assure l'action correcte en cas d'override externe.
         form.action = GOOGLE_SCRIPT_URL;
         form.method = "POST";
-        form.enctype = "multipart/form-data";
+        form.enctype = "application/x-www-form-urlencoded";
         form.acceptCharset = "UTF-8";
 
         // Ajoute/alimente un champ timestamp pour éviter un payload vide.
@@ -343,12 +343,19 @@
         }
 
         const sendWithFallback = async (formData) => {
+          // Convertit le FormData en application/x-www-form-urlencoded pour que Apps Script parse bien e.parameter.
+          const urlBody = new URLSearchParams();
+          for (const [key, value] of formData.entries()) {
+            urlBody.append(key, value);
+          }
+
           // Tente d'abord le mode CORS pour remonter les erreurs (script non public, mauvaise URL…),
           // puis repasse en no-cors pour les déploiements sans header CORS.
           try {
             const response = await fetch(GOOGLE_SCRIPT_URL, {
               method: "POST",
-              body: formData,
+              headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+              body: urlBody,
               mode: "cors",
               credentials: "omit",
             });
@@ -360,7 +367,8 @@
             console.warn("RSVP: échec en mode CORS, nouvel essai en no-cors", error);
             await fetch(GOOGLE_SCRIPT_URL, {
               method: "POST",
-              body: formData,
+              headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+              body: urlBody,
               mode: "no-cors",
             });
             return "opaque";
