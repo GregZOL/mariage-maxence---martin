@@ -54,6 +54,7 @@
 .hero-content .hero-title {
   color: #ffffff;
   text-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  font-family: var(--font-serif);
 }
 
 .hero-date {
