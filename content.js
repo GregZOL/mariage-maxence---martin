@@ -85,7 +85,7 @@
         {
           image: "assets/event_4.jpg",
           day: "Dimanche 2 août",
-          name: "Aperetivo",
+          name: "aperetivo",
           time: "à partir de 16h, et pour toute la soirée",
           description:
             "Un Aperetivo pour prolonger les discussions de la veille avant les premiers départs.",
@@ -150,7 +150,7 @@
         { name: "Verre d'accueil — Vendredi", meta: "18h — Le Molineuf" },
         { name: "Cérémonie — Samedi", meta: "16h — Église Saint-Secondin, Valencisse" },
         { name: "Vin d’honneur, dîner & soirée — Samedi", meta: "18h — La Poterie" },
-        { name: "Aperetivo — Dimanche", meta: "a Partir de 16h — La Poterie / alentours" },
+        { name: "aperetivo — Dimanche", meta: "a Partir de 16h — La Poterie / alentours" },
       ],
       options: {
         present: "Présent",
