@@ -85,11 +85,11 @@
         {
           image: "assets/event_4.jpg",
           day: "Dimanche 2 août",
-          name: "Brunch et au revoir",
-          time: "Fin de matinée",
+          name: "Aperetivo",
+          time: "à partir de 16h, et pour toute là soirée",
           description:
             "Un brunch pour prolonger les discussions de la veille avant les premiers départs.",
-          location: "À proximité de La Poterie",
+          location: "La Poterie, Chambon-sur-Cisse",
           dresscode: "Tenue confortable",
         },
       ],
@@ -150,7 +150,7 @@
         { name: "Verre d'accueil — Vendredi", meta: "18h — Le Molineuf" },
         { name: "Cérémonie — Samedi", meta: "16h — Église Saint-Secondin, Valencisse" },
         { name: "Vin d’honneur, dîner & soirée — Samedi", meta: "18h — La Poterie" },
-        { name: "Brunch — Dimanche", meta: "Fin de matinée — La Poterie / alentours" },
+        { name: "Brunch — Dimanche", meta: "a Partir de 16h — La Poterie / alentours" },
       ],
       options: {
         present: "Présent",

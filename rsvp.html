@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Réponse — Marriage Maxence et Martin</title>
+  <title>Réponse — Mariage Maxence et Martin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -320,7 +320,7 @@
         // Assure l'action correcte en cas d'override externe.
         form.action = GOOGLE_SCRIPT_URL;
         form.method = "POST";
-        form.enctype = "application/x-www-form-urlencoded";
+        form.enctype = "multipart/form-data";
         form.acceptCharset = "UTF-8";
 
         // Ajoute/alimente un champ timestamp pour éviter un payload vide.
@@ -339,39 +339,19 @@
           if (submitBtn) submitBtn.disabled = true;
 
           const formData = new FormData(form);
-          const urlEncodedData = new URLSearchParams();
-          formData.forEach((value, key) => {
-            urlEncodedData.append(key, value);
-          });
-
-          const send = (mode = "cors") =>
-            fetch(GOOGLE_SCRIPT_URL, {
-              method: "POST",
-              body: urlEncodedData,
-              headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-              mode,
-            });
 
           try {
-            const response = await send("cors");
-            if (response.type === "opaque") {
-              setStatus("Merci ! Réponse envoyée (réponse opaque, vérifier le Google Sheet).");
-              form.reset();
-            } else if (!response.ok) {
-              throw new Error(`HTTP ${response.status}`);
-            } else {
-              setStatus("Merci ! Votre réponse a bien été enregistrée.");
-              form.reset();
-            }
+            // Requête simple (no headers) pour éviter le préflight CORS.
+            await fetch(GOOGLE_SCRIPT_URL, {
+              method: "POST",
+              body: formData,
+              mode: "no-cors",
+            });
+            setStatus("Réponse envoyée. Vérifiez qu’elle apparaît dans le Google Sheet.");
+            form.reset();
           } catch (err) {
-            try {
-              await send("no-cors");
-              setStatus("Réponse envoyée (mode sans vérification). Vérifiez qu’elle apparaît dans le Google Sheet.");
-              form.reset();
-            } catch (fallbackErr) {
-              console.error("RSVP submit error", fallbackErr);
-              setStatus("Échec de l’envoi. Vérifiez votre connexion ou réessayez plus tard.", true);
-            }
+            console.error("RSVP submit error", err);
+            setStatus("Échec de l’envoi. Vérifiez votre connexion ou réessayez plus tard.", true);
           } finally {
             if (submitBtn) submitBtn.disabled = false;
           }
