@@ -252,10 +252,11 @@
   <script>
     (function () {
       const { shared, rsvpPage } = window.siteContent;
-      const events = rsvpPage.events;
-      const GOOGLE_SCRIPT_URL =
-        window.GOOGLE_SCRIPT_URL ||
+      const events = Array.isArray(rsvpPage.events) ? rsvpPage.events : [];
+      const DEFAULT_GOOGLE_SCRIPT_URL =
         "https://script.google.com/macros/s/AKfycbxGjtncs1FufA3uFS-jqdViCIpNoVmihqFFPFIbux3_0-xUpgiVq69qV97FbyqoN1x1NA/exec";
+      const GOOGLE_SCRIPT_URL = window.GOOGLE_SCRIPT_URL || DEFAULT_GOOGLE_SCRIPT_URL;
+      const hasCustomScriptUrl = Boolean(window.GOOGLE_SCRIPT_URL);
 
       applyContent({
         text: {
@@ -315,6 +316,11 @@
         statusEl.textContent = message || "";
         statusEl.classList.toggle("is-error", Boolean(isError));
       };
+      if (!hasCustomScriptUrl) {
+        console.warn(
+          "RSVP: aucune URL de script personnalisée définie. Définissez window.GOOGLE_SCRIPT_URL avec l'URL /exec de votre Apps Script Web App."
+        );
+      }
 
       if (form) {
         // Assure l'action correcte en cas d'override externe.
@@ -332,6 +338,31 @@
           form.appendChild(tsInput);
         }
 
+        const sendWithFallback = async (formData) => {
+          // Tente d'abord le mode CORS pour remonter les erreurs (script non public, mauvaise URL…),
+          // puis repasse en no-cors pour les déploiements sans header CORS.
+          try {
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
+              method: "POST",
+              body: formData,
+              mode: "cors",
+              credentials: "omit",
+            });
+            if (!response.ok) {
+              throw new Error(`HTTP ${response.status}`);
+            }
+            return "cors";
+          } catch (error) {
+            console.warn("RSVP: échec en mode CORS, nouvel essai en no-cors", error);
+            await fetch(GOOGLE_SCRIPT_URL, {
+              method: "POST",
+              body: formData,
+              mode: "no-cors",
+            });
+            return "opaque";
+          }
+        };
+
         form.addEventListener("submit", async (event) => {
           event.preventDefault();
           tsInput.value = new Date().toISOString();
@@ -341,13 +372,12 @@
           const formData = new FormData(form);
 
           try {
-            // Requête simple (no headers) pour éviter le préflight CORS.
-            await fetch(GOOGLE_SCRIPT_URL, {
-              method: "POST",
-              body: formData,
-              mode: "no-cors",
-            });
-            setStatus("Réponse envoyée. Vérifiez qu’elle apparaît dans le Google Sheet.");
+            const mode = await sendWithFallback(formData);
+            const successNote =
+              mode === "cors"
+                ? "Réponse envoyée."
+                : "Réponse envoyée (confirmation silencieuse). Vérifiez qu’elle apparaît dans le Google Sheet.";
+            setStatus(successNote);
             form.reset();
           } catch (err) {
             console.error("RSVP submit error", err);
