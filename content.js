@@ -103,7 +103,7 @@
       eyebrow: "📍 Lieu",
       title: "La Poterie",
       intro:
-        "Nous nous retrouvons à La Poterie, un lieu familial niché à Chambon-sur-Cisse. Voici les informations pour vous y rendre et où loger à proximité.",
+        "Nous nous retrouvons à La Poterie, à Chambon-sur-Cisse. Voici les informations pour vous y rendre et où loger à proximité.",
       addressTitle: "Adresse",
       address: "La Poterie, 12 route de Blois, Chambon-sur-Cisse, Loir-et-Cher (42)",
       accessTitle: "Accès",
