@@ -189,3 +189,31 @@
     font-size: 15px;
   }
 }
+
+@media (max-width: 480px) {
+  .ui-header-inner {
+    padding: 0 10px;
+    gap: 8px;
+  }
+
+  .ui-header.is-solid .ui-header-inner {
+    padding: 10px 10px 6px;
+  }
+
+  .site-nav {
+    gap: 8px;
+    padding: 2px 0;
+  }
+
+  .nav-link {
+    padding: 4px 2px;
+  }
+
+  .brand-subline {
+    padding: 0 10px 0;
+  }
+
+  .ui-header.is-solid .brand-subline {
+    padding: 0 10px 8px;
+  }
+}
