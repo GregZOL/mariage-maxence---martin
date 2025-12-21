@@ -86,7 +86,7 @@
           image: "assets/event_4.jpg",
           day: "Dimanche 2 août",
           name: "Aperetivo",
-          time: "à partir de 16h, et pour toute là soirée",
+          time: "à partir de 16h, et pour toute la soirée",
           description:
             "Un Aperetivo pour prolonger les discussions de la veille avant les premiers départs.",
           location: "La Poterie, Chambon-sur-Cisse",
@@ -94,7 +94,7 @@
         },
       ],
       cta: {
-        text: "Prêt(e) à nous dire quand vous serez là ?",
+        text: "Prêt(e) à nous dire quand vous serez la ?",
         button: "Remplir le formulaire de réponse",
       },
     },
