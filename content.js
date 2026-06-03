@@ -85,10 +85,10 @@
         {
           image: "assets/event_4.jpg",
           day: "Dimanche 2 août",
-          name: "aperetivo",
+          name: "Aperitivo",
           time: "à partir de 16h, et pour toute la soirée",
           description:
-            "Un Aperetivo pour prolonger les discussions de la veille avant les premiers départs.",
+            "Un Aperitivo pour prolonger les discussions de la veille avant les premiers départs.",
           location: "La Poterie, Chambon-sur-Cisse",
           dresscode: "Tenue confortable",
         },
@@ -150,7 +150,7 @@
         { name: "Verre d'accueil — Vendredi", meta: "18h — Le Molineuf" },
         { name: "Cérémonie — Samedi", meta: "16h — Église Saint-Secondin, Valencisse" },
         { name: "Vin d’honneur, dîner & soirée — Samedi", meta: "18h — La Poterie" },
-        { name: "aperetivo — Dimanche", meta: "a Partir de 16h — La Poterie / alentours" },
+        { name: "Aperitivo — Dimanche", meta: "a Partir de 16h — La Poterie / alentours" },
       ],
       options: {
         present: "Présent",
