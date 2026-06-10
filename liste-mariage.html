@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Liste de mariage — Mariage Maxence et Martin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" 
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header ui-header is-solid">
+      <div class="site-header-inner ui-header-inner">
+        <a href="index.html" class="brand-button" data-content="brand.mark" aria-label="Retour à l'accueil"></a>
+        <nav class="site-nav" aria-label="Navigation principale">
+          <a href="lieu.html" class="nav-link" data-content="nav.venue"></a>
+          <a href="liste-mariage.html" class="nav-link is-active" data-content="nav.list"></a>
+          <a href="rsvp.html" class="nav-link nav-primary" data-content="nav.rsvp"></a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-card wedding-list-page">
+      <header class="page-header">
+        <p class="sous-titre_1" data-content="list.eyebrow"></p>
+        <h1 data-content="list.title"></h1>
+        <p class="page-intro" data-content="list.intro"></p>
+      </header>
+
+      <section class="wedding-list-panel">
+        <div class="wedding-list-icon" aria-hidden="true">✦</div>
+        <div class="wedding-list-content">
+          <h2 data-content="list.cardTitle"></h2>
+          <p data-content="list.cardText"></p>
+          <p class="wedding-list-note" data-content="list.note"></p>
+          <a href="rsvp.html" class="btn btn-primary" data-content="list.cta"></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p data-content="footer.list"></p>
+    </footer>
+  </div>
+
+  <script src="content.js"></script>
+  <script>
+    (function () {
+      const { shared, listPage } = window.siteContent;
+
+      applyContent({
+        text: {
+          "brand.mark": shared.brandMark,
+          "brand.names": shared.brandNames,
+          "brand.sub": shared.brandSub,
+          "nav.program": shared.nav.program,
+          "nav.venue": shared.nav.venue,
+          "nav.list": shared.nav.list,
+          "nav.dresscode": shared.nav.dresscode,
+          "nav.rsvp": shared.nav.rsvp,
+          "list.eyebrow": listPage.eyebrow,
+          "list.title": listPage.title,
+          "list.intro": listPage.intro,
+          "list.cardTitle": listPage.cardTitle,
+          "list.cardText": listPage.cardText,
+          "list.note": listPage.note,
+          "list.cta": listPage.cta,
+          "footer.list": shared.footer.list,
+        },
+      });
+    })();
+  </script>
+</body>
+</html>

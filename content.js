@@ -10,12 +10,14 @@
         home: "Accueil",
         program: "Programme",
         venue: "Lieu",
+        list: "Liste",
         dresscode: "Dress Code",
         rsvp: "RSVP",
       },
       footer: {
         home: "Accueil",
         events: "Programme",
+        list: "Liste de mariage",
         rsvp: "RSVP",
       },
     },
@@ -116,6 +118,19 @@
         "De nombreux gîtes et hôtels sont disponibles dans les environs de Chambon-sur-Cisse, Molineuf, Onzain, Blois, Chaumont-sur-Loire. Nous vous partagerons une liste de suggestions prochainement.",
       ],
       mapCta: "Ouvrir sur Google Maps",
+    },
+
+    listPage: {
+      eyebrow: "Liste de mariage",
+      title: "Liste de mariage",
+      intro:
+        "Le plus important pour nous est de vous avoir à nos côtés. Nous ajouterons ici les informations utiles pour celles et ceux qui souhaitent participer à notre liste.",
+      cardTitle: "Informations à venir",
+      cardText:
+        "Nous préparons encore les détails de notre liste. Revenez bientôt sur cette page pour retrouver le lien et les indications pratiques.",
+      note:
+        "Merci déjà pour votre présence, vos messages et votre aide pour rendre ce week-end possible.",
+      cta: "Confirmer ma présence",
     },
 
     rsvpPage: {

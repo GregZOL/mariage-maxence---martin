@@ -135,6 +135,10 @@
   color: var(--accent-strong);
 }
 
+.ui-header.is-solid .nav-link.is-active {
+  color: var(--accent-strong);
+}
+
 .ui-header.is-solid .brand-subline {
   margin: 0 auto 8px;
   padding: 0 12px 8px;
