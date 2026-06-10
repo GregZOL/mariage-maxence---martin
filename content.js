@@ -11,6 +11,7 @@
         program: "Programme",
         venue: "Lieu",
         list: "Liste",
+        listFull: "Liste de mariage",
         dresscode: "Dress Code",
         rsvp: "RSVP",
       },
@@ -123,14 +124,18 @@
     listPage: {
       eyebrow: "Liste de mariage",
       title: "Liste de mariage",
-      intro:
-        "Le plus important pour nous est de vous avoir à nos côtés. Nous ajouterons ici les informations utiles pour celles et ceux qui souhaitent participer à notre liste.",
-      cardTitle: "Informations à venir",
-      cardText:
-        "Nous préparons encore les détails de notre liste. Revenez bientôt sur cette page pour retrouver le lien et les indications pratiques.",
-      note:
-        "Merci déjà pour votre présence, vos messages et votre aide pour rendre ce week-end possible.",
-      cta: "Confirmer ma présence",
+      foundation: {
+        sectionLabel: "Fondation Les Goélands",
+        logoAlt: "Logo de la fondation Les Goélands",
+        text:
+          "Chers amis, chère famille,\nNous serions comblés que votre geste soutienne la fondation Les Goélands, fondée par le père de Martin, qui accompagne financièrement et humainement de jeunes étudiants dans leur parcours d'excellence.",
+      },
+      couple: {
+        sectionLabel: "Attention destinée aux mariés",
+        imageAlt: "Photo des mariés",
+        text:
+          "Si toutefois vous souhaitez que votre attention nous soit directement destinée, nous l'accueillerons évidemment avec grand plaisir.\n\b Merci infiniment",
+      },
     },
 
     rsvpPage: {
@@ -182,22 +187,21 @@
     },
   };
 
-  // Applique le contenu sur les éléments marqués via data-content.
-  function applyContent({ text = {}, html = {}, attrs = {} } = {}) {
+  function applyContentIn(root, { text = {}, html = {}, attrs = {} } = {}) {
     Object.entries(text).forEach(([key, value]) => {
-      document.querySelectorAll(`[data-content="${key}"]`).forEach((node) => {
+      root.querySelectorAll(`[data-content="${key}"]`).forEach((node) => {
         node.textContent = value;
       });
     });
 
     Object.entries(html).forEach(([key, value]) => {
-      document.querySelectorAll(`[data-content="${key}"]`).forEach((node) => {
+      root.querySelectorAll(`[data-content="${key}"]`).forEach((node) => {
         node.innerHTML = value;
       });
     });
 
     Object.entries(attrs).forEach(([key, attrMap]) => {
-      document.querySelectorAll(`[data-content="${key}"]`).forEach((node) => {
+      root.querySelectorAll(`[data-content="${key}"]`).forEach((node) => {
         Object.entries(attrMap).forEach(([attr, val]) => {
           node.setAttribute(attr, val);
         });
@@ -205,6 +209,104 @@
     });
   }
 
+  // Applique le contenu sur les éléments marqués via data-content.
+  function applyContent(options = {}) {
+    applyContentIn(document, options);
+  }
+
+  function getHeaderContent() {
+    const { shared } = content;
+
+    return {
+      text: {
+        "brand.mark": shared.brandMark,
+        "brand.names": shared.brandNames,
+        "brand.sub": shared.brandSub,
+        "nav.program": shared.nav.program,
+        "nav.venue": shared.nav.venue,
+        "nav.list": shared.nav.list,
+        "nav.listFull": shared.nav.listFull,
+        "nav.dresscode": shared.nav.dresscode,
+        "nav.rsvp": shared.nav.rsvp,
+      },
+      attrs: {
+        "nav.listLink": { "aria-label": shared.nav.listFull },
+      },
+    };
+  }
+
+  function applyHeaderState(header, mountNode) {
+    const activeNavId = mountNode.dataset.headerActive || "";
+    const isSolid = mountNode.dataset.headerSolid === "true";
+
+    header.classList.toggle("is-solid", isSolid);
+
+    header.querySelectorAll("[data-nav-id]").forEach((link) => {
+      link.classList.toggle("is-active", link.dataset.navId === activeNavId);
+    });
+  }
+
+  function createHeaderFromMarkup(markup) {
+    const template = document.createElement("template");
+    template.innerHTML = markup.trim();
+
+    const header = template.content.firstElementChild;
+    if (!header) {
+      throw new Error("Le markup du header ne contient aucun élément racine.");
+    }
+
+    return header;
+  }
+
+  function getFallbackHeaderMarkup() {
+    return `
+      <header class="site-header ui-header">
+        <div class="site-header-inner ui-header-inner">
+          <a href="index.html" class="brand-button" data-content="brand.mark" aria-label="Retour à l'accueil"></a>
+          <nav class="site-nav" aria-label="Navigation principale">
+            <a href="lieu.html" class="nav-link" data-nav-id="venue" data-content="nav.venue"></a>
+            <a href="liste-mariage.html" class="nav-link" data-nav-id="list" data-content="nav.listLink">
+              <span class="nav-label nav-label--desktop" data-content="nav.listFull"></span>
+              <span class="nav-label nav-label--mobile" data-content="nav.list"></span>
+            </a>
+            <a href="rsvp.html" class="nav-link nav-primary" data-nav-id="rsvp" data-content="nav.rsvp"></a>
+          </nav>
+        </div>
+      </header>
+    `;
+  }
+
+  async function loadHeaderElement() {
+    try {
+      const response = await fetch("header.html");
+      if (!response.ok) {
+        throw new Error(`Impossible de charger header.html (${response.status})`);
+      }
+
+      return createHeaderFromMarkup(await response.text());
+    } catch (error) {
+      console.warn("Header: chargement de header.html impossible, fallback local utilisé.", error);
+      return createHeaderFromMarkup(getFallbackHeaderMarkup());
+    }
+  }
+
+  async function mountSiteHeader(mountNode = document.querySelector("[data-site-header]")) {
+    if (!mountNode) return null;
+
+    const header = await loadHeaderElement();
+
+    applyHeaderState(header, mountNode);
+    applyContentIn(header, getHeaderContent());
+    mountNode.replaceWith(header);
+
+    return header;
+  }
+
   window.siteContent = content;
   window.applyContent = applyContent;
+  window.mountSiteHeader = mountSiteHeader;
+  window.siteHeaderReady = mountSiteHeader().catch((error) => {
+    console.error("Header:", error);
+    return null;
+  });
 })();

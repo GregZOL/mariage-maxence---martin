@@ -5,60 +5,84 @@
 .wedding-list-page {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
-.wedding-list-panel {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 18px;
-  align-items: flex-start;
-  padding: 22px;
+.wedding-list-section {
+  position: relative;
+  min-height: clamp(520px, 78vh, 760px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
   border: 1px solid rgba(230, 211, 197, 0.9);
-  border-radius: var(--radius-md);
-  background: linear-gradient(145deg, #fffdfb 0%, #fff7f0 100%);
+  isolation: isolate;
 }
 
-.wedding-list-icon {
-  width: 48px;
-  height: 48px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: var(--bg-chip-soft);
-  color: var(--accent-strong);
-  font-family: var(--font-serif);
-  font-size: 24px;
+.wedding-list-section--foundation {
+  align-items: flex-start;
 }
 
-.wedding-list-content h2 {
-  margin: 0 0 8px;
-  font-family: var(--font-serif);
-  font-size: 24px;
+.wedding-list-section--couple {
+  align-items: flex-start;
+  padding: 0px;
 }
 
-.wedding-list-content p {
+.wedding-list-section::after {
+  display: none;
+}
+
+.wedding-list-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  background: #fffdfb;
+}
+
+.wedding-list-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding-top: 100px;
+  object-fit: cover;
+}
+
+.wedding-list-media--logo {
+  background: #f9f9f9;
+}
+
+.wedding-list-media--logo img {
+  padding: clamp(4px, 1.5vw, 18px);
+  object-fit: contain;
+}
+
+.wedding-list-block {
+  position: relative;
+  width: 100%;
   margin: 0;
-  color: var(--text-muted);
-  font-size: 15px;
-  line-height: 1.7;
+  padding: 20px;
+  background: transparent;
 }
 
-.wedding-list-note {
-  margin-top: 14px !important;
-  padding-left: 14px;
-  border-left: 3px solid var(--accent);
-  color: var(--text-main) !important;
+.wedding-list-text {
+  margin: 0;
+  color: #8a4a2f;
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.8;
+  text-align: center;
+  white-space: pre-line;
 }
 
-.wedding-list-content .btn {
-  margin-top: 18px;
+.wedding-list-section--couple .wedding-list-block {
+  padding: 20px;
 }
 
 @media (max-width: 640px) {
-  .wedding-list-panel {
-    grid-template-columns: 1fr;
-    padding: 18px;
+  .wedding-list-section {
+    min-height: 72vh;
   }
 }

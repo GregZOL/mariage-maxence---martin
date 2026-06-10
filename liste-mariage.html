@@ -14,31 +14,29 @@
 </head>
 <body>
   <div class="page-shell">
-    <header class="site-header ui-header is-solid">
-      <div class="site-header-inner ui-header-inner">
-        <a href="index.html" class="brand-button" data-content="brand.mark" aria-label="Retour à l'accueil"></a>
-        <nav class="site-nav" aria-label="Navigation principale">
-          <a href="lieu.html" class="nav-link" data-content="nav.venue"></a>
-          <a href="liste-mariage.html" class="nav-link is-active" data-content="nav.list"></a>
-          <a href="rsvp.html" class="nav-link nav-primary" data-content="nav.rsvp"></a>
-        </nav>
-      </div>
-    </header>
+    <div data-site-header data-header-active="list" data-header-solid="true"></div>
 
     <main class="main-card wedding-list-page">
       <header class="page-header">
         <p class="sous-titre_1" data-content="list.eyebrow"></p>
         <h1 data-content="list.title"></h1>
-        <p class="page-intro" data-content="list.intro"></p>
       </header>
 
-      <section class="wedding-list-panel">
-        <div class="wedding-list-icon" aria-hidden="true">✦</div>
-        <div class="wedding-list-content">
-          <h2 data-content="list.cardTitle"></h2>
-          <p data-content="list.cardText"></p>
-          <p class="wedding-list-note" data-content="list.note"></p>
-          <a href="rsvp.html" class="btn btn-primary" data-content="list.cta"></a>
+      <section class="wedding-list-section wedding-list-section--foundation" data-content="list.foundation.sectionLabel" aria-label="">
+        <div class="wedding-list-media wedding-list-media--logo">
+          <img src="assets/Logo Fondation.jpeg" data-content="list.foundation.logoAlt" alt="" />
+        </div>
+        <div class="venue-block wedding-list-block">
+          <p class="wedding-list-text" data-content="list.foundation.text"></p>
+        </div>
+      </section>
+
+      <section class="wedding-list-section wedding-list-section--couple" data-content="list.couple.sectionLabel" aria-label="">
+        <div class="wedding-list-media">
+          <img src="assets/Photo mariés.jpeg" data-content="list.couple.imageAlt" alt="" />
+        </div>
+        <div class="venue-block wedding-list-block">
+          <p class="wedding-list-text" data-content="list.couple.text"></p>
         </div>
       </section>
     </main>
@@ -65,12 +63,15 @@
           "nav.rsvp": shared.nav.rsvp,
           "list.eyebrow": listPage.eyebrow,
           "list.title": listPage.title,
-          "list.intro": listPage.intro,
-          "list.cardTitle": listPage.cardTitle,
-          "list.cardText": listPage.cardText,
-          "list.note": listPage.note,
-          "list.cta": listPage.cta,
+          "list.foundation.text": listPage.foundation.text,
+          "list.couple.text": listPage.couple.text,
           "footer.list": shared.footer.list,
+        },
+        attrs: {
+          "list.foundation.sectionLabel": { "aria-label": listPage.foundation.sectionLabel },
+          "list.foundation.logoAlt": { alt: listPage.foundation.logoAlt },
+          "list.couple.sectionLabel": { "aria-label": listPage.couple.sectionLabel },
+          "list.couple.imageAlt": { alt: listPage.couple.imageAlt },
         },
       });
     })();
