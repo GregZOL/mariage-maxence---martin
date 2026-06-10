@@ -134,7 +134,7 @@
         sectionLabel: "Attention destinée aux mariés",
         imageAlt: "Photo des mariés",
         text:
-          "Si toutefois vous souhaitez que votre attention nous soit directement destinée, nous l'accueillerons évidemment avec grand plaisir.\n\b Merci infiniment",
+          "Si toutefois vous souhaitez que votre attention nous soit directement destinée, nous l'accueillerons évidemment avec grand plaisir. Merci infiniment",
       },
     },
 

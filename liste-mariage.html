@@ -17,14 +17,16 @@
     <div data-site-header data-header-active="list" data-header-solid="true"></div>
 
     <main class="main-card wedding-list-page">
-      <header class="page-header">
-        <p class="sous-titre_1" data-content="list.eyebrow"></p>
-        <h1 data-content="list.title"></h1>
-      </header>
-
       <section class="wedding-list-section wedding-list-section--foundation" data-content="list.foundation.sectionLabel" aria-label="">
         <div class="wedding-list-media wedding-list-media--logo">
-          <img src="assets/Logo Fondation.jpeg" data-content="list.foundation.logoAlt" alt="" />
+          <a
+            class="wedding-list-image-link"
+            href="https://www.helloasso.com/associations/fondation-pour-l-enfance/formulaires/8"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <img src="assets/Logo Fondation.jpeg" data-content="list.foundation.logoAlt" alt="" />
+          </a>
         </div>
         <div class="venue-block wedding-list-block">
           <p class="wedding-list-text" data-content="list.foundation.text"></p>
@@ -33,7 +35,14 @@
 
       <section class="wedding-list-section wedding-list-section--couple" data-content="list.couple.sectionLabel" aria-label="">
         <div class="wedding-list-media">
-          <img src="assets/Photo mariés.jpeg" data-content="list.couple.imageAlt" alt="" />
+          <a
+            class="wedding-list-image-link"
+            href="https://www.millemercismariage.com/maxencemartin-0108/liste.html"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <img src="assets/Photo mariés.jpeg" data-content="list.couple.imageAlt" alt="" />
+          </a>
         </div>
         <div class="venue-block wedding-list-block">
           <p class="wedding-list-text" data-content="list.couple.text"></p>
@@ -61,8 +70,6 @@
           "nav.list": shared.nav.list,
           "nav.dresscode": shared.nav.dresscode,
           "nav.rsvp": shared.nav.rsvp,
-          "list.eyebrow": listPage.eyebrow,
-          "list.title": listPage.title,
           "list.foundation.text": listPage.foundation.text,
           "list.couple.text": listPage.couple.text,
           "footer.list": shared.footer.list,
