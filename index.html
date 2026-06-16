@@ -4,192 +4,191 @@
   <meta charset="UTF-8" />
   <title>Mariage Maxence et Martin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link 
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" 
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="tw.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <script src="mapLinks.js"></script>
 </head>
-<body>
-  <div class="page-shell page-shell--full">
-    <div data-site-header></div>
+<body class="min-h-screen font-sans antialiased text-brown-main [background:radial-gradient(circle_at_top_left,#fef7ee_0,#f7efe9_40%,#f2e5db_100%)]">
 
-    <!-- Hero plein écran sans photo, avec fond dégradé et contenu centré -->
+  <div class="max-w-none w-full">
+    <div data-site-header data-header-solid="true"></div>
+
     <main>
-      <section id="hero" class="hero-section hero-section--home">
-        <div class="hero-content">
-          <h1 class="hero-title" data-content="home.title"></h1>
-          <p class="hero-date" data-content="home.eyebrow"></p>
-          <p class="hero-location" data-content="home.location"></p>
+      <!-- Hero -->
+      <section id="hero" class="relative min-h-[88vh] flex flex-col justify-center items-center overflow-hidden bg-[#fdfaf5]">
+        <!-- lueur centrale -->
+        <div class="absolute inset-0 [background:radial-gradient(ellipse_80%_60%_at_50%_45%,#fff_0%,transparent_70%)]"></div>
+
+        <div class="relative z-10 flex flex-col items-center gap-7 px-6 py-28 text-center">
+
+          <!-- date -->
+          <p class="m-0 text-[#3d2c2a]/40 text-[10px] tracking-[0.35em] uppercase font-sans" data-content="home.eyebrow"></p>
+
+          <!-- ligne déco -->
+          <div class="flex items-center gap-5 w-full max-w-[320px]">
+            <div class="flex-1 h-px bg-gradient-to-r from-transparent to-[#3d2c2a]/15"></div>
+            <span class="text-[#3d2c2a]/20 text-[10px]">◆</span>
+            <div class="flex-1 h-px bg-gradient-to-l from-transparent to-[#3d2c2a]/15"></div>
+          </div>
+
+          <!-- titre -->
+          <h1 class="font-serif m-0 text-[#1a1210] tracking-[0.03em] font-light leading-none text-[clamp(44px,8.5vw,100px)]" data-content="home.title"></h1>
+
+          <!-- ligne déco -->
+          <div class="flex items-center gap-5 w-full max-w-[320px]">
+            <div class="flex-1 h-px bg-gradient-to-r from-transparent to-[#3d2c2a]/15"></div>
+            <span class="text-[#3d2c2a]/20 text-[10px]">◆</span>
+            <div class="flex-1 h-px bg-gradient-to-l from-transparent to-[#3d2c2a]/15"></div>
+          </div>
+
+          <!-- subtitle -->
+          <p class="m-0 text-[#3d2c2a]/50 text-[clamp(13px,1.4vw,16px)] max-w-[420px] leading-relaxed font-light" data-content="home.subtitle"></p>
+
         </div>
       </section>
 
-      <!-- Contenu complémentaire sous le hero -->
-      <div class="page-shell">
-      
-
-
-        <!-- Section Programme (ex-page dédiée) -->
-        <section id="programme">
-          <header class="page-header">
-            <h1 style="text-align: center;" data-content="program.title"></h1>
+      <!-- Programme -->
+      <div class="max-w-[1120px] mx-auto mb-12 px-4">
+        <section id="programme" class="mt-8">
+          <header class="mb-6 text-center">
+            <h1 class="font-serif text-[28px] m-0 mb-[6px]" data-content="program.title"></h1>
           </header>
-
-          <div class="program-list">
-            <!-- Cartes du programme générées en JS -->
+          <div data-program-list class="grid gap-5 justify-center" style="grid-template-columns: repeat(auto-fill, minmax(240px, 360px))">
+            <!-- cartes générées en JS -->
           </div>
         </section>
       </div>
     </main>
 
-    <footer class="site-footer">
+    <footer class="max-w-[1120px] mx-auto px-4 mt-[18px] text-center text-[13px] text-brown-soft">
       <p data-content="footer.home"></p>
     </footer>
   </div>
 
   <script src="content.js"></script>
+  <script src="navbar.js"></script>
   <script>
     (function () {
-      const { shared, home, eventsPage } = window.siteContent;
-      const events = Array.isArray(eventsPage.items) ? eventsPage.items : [];
       const mapLinks = (window.mapLinks && window.mapLinks.program) || [];
 
-      applyContent({
-        text: {
-          "brand.mark": shared.brandMark,
-          "brand.names": shared.brandNames,
-          "brand.sub": shared.brandSub,
-          "nav.program": shared.nav.program,
-          "nav.venue": shared.nav.venue,
-          "nav.list": shared.nav.list,
-          "nav.dresscode": shared.nav.dresscode,
-          "nav.rsvp": shared.nav.rsvp,
-          "home.eyebrow": home.eyebrow,
-          "home.title": home.title,
-          "home.location": home.location,
-          "home.description": home.description,
-          "home.cta.program": home.buttons.program,
-          "home.cta.rsvp": home.buttons.rsvp,
-          "home.info.date.label": home.info.date.label,
-          "home.info.date.value": home.info.date.value,
-          "home.info.location.label": home.info.location.label,
-          "home.info.location.value": home.info.location.value,
-          "home.info.dresscode.label": home.info.dresscode.label,
-          "home.info.dresscode.value": home.info.dresscode.value,
-          "home.side.title": home.side.title,
-          "footer.home": shared.footer.home,
-          "program.eyebrow": eventsPage.eyebrow,
-          "program.title": eventsPage.title,
-          "program.intro": eventsPage.intro,
-        },
-        html: {
-          "home.side.item1": home.side.items[0],
-          "home.side.item2": home.side.items[1],
-          "home.side.item3": home.side.items[2],
-          "home.side.item4": home.side.items[3],
-        },
-      });
+      const cardColors = ['#E1B378', '#B1B137', '#8CB608', '#F6E5AD'];
 
-      const programList = document.querySelector(".program-list");
-      if (programList) {
-        programList.innerHTML = "";
-        events.forEach((event, index) => {
-          if (!event) return;
-          const card = document.createElement("article");
-          card.className = "program-card ui-card-event";
-
-          const image = document.createElement("div");
-          image.className = "program-card-image";
-          if (event.image) {
-            image.style.backgroundImage = `url('${event.image}')`;
-          }
-
-          const body = document.createElement("div");
-          body.className = "program-card-body";
-
-          const title = document.createElement("h3");
-          title.className = "program-card-title";
-          title.textContent = event.name || "";
-
-          const location = document.createElement("p");
-          location.className = "program-card-location";
-          location.textContent = event.location || "";
-
-          const time = document.createElement("p");
-          time.className = "program-card-time";
-          const timeParts = [event.day, event.time].filter(Boolean);
-          time.textContent = timeParts.join(" • ");
-
-          const cta = document.createElement("a");
-          cta.className = "program-card-cta";
-          cta.textContent = "Voir sur Google Maps";
-          cta.href = mapLinks[index] || "#";
-          cta.target = "_blank";
-          cta.rel = "noreferrer noopener";
-
-          body.append(title, location, time, cta);
-          card.append(image, body);
-
-          programList.appendChild(card);
-        });
+      function hexToRgb(hex) {
+        const n = parseInt(hex.slice(1), 16);
+        return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
       }
 
-      const initHomeHeader = () => {
-        // Header translucide sur hero, puis blanc dès que le hero sort de l'écran.
-        // Ajout : si la section sous le header a un background image, on applique la classe has-hero-bg.
-        const header = document.querySelector(".site-header");
-        const hero = document.querySelector("#hero");
-        if (header && hero && "IntersectionObserver" in window) {
-          const observer = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                const bgImage = getComputedStyle(hero).backgroundImage;
-                const hasImage = bgImage && bgImage !== "none";
-                header.classList.toggle("has-hero-bg", hasImage && entry.isIntersecting);
-                if (entry.isIntersecting) {
-                  // Applique le même background que le hero sur le header quand on est en haut
-                  header.style.backgroundImage = bgImage;
-                  header.style.backgroundSize = "cover";
-                  header.style.backgroundPosition = "center";
-                  header.style.backgroundRepeat = "no-repeat";
-                  header.classList.remove("is-solid"); // Hero visible : header transparent sur l'image
-                } else {
-                  header.style.backgroundImage = "";
-                  header.classList.add("is-solid"); // Hero hors écran : header sur fond blanc
-                }
-              });
-            },
-            { threshold: 0.2 }
-          );
-          observer.observe(hero);
-        } else if (header) {
-          // Fallback simple si IntersectionObserver indisponible
-          const solidOnScroll = () => {
-            const heroRect = hero ? hero.getBoundingClientRect() : { bottom: 0 };
-            const bgImage = hero ? getComputedStyle(hero).backgroundImage : "none";
-            const hasImage = bgImage && bgImage !== "none";
-            header.classList.toggle("has-hero-bg", hasImage && heroRect.bottom > 0);
-            if (heroRect.bottom <= 0) {
-              header.style.backgroundImage = "";
-              header.classList.add("is-solid");
-            } else {
-              header.style.backgroundImage = hasImage ? bgImage : "";
-              header.style.backgroundSize = "cover";
-              header.style.backgroundPosition = "center";
-              header.style.backgroundRepeat = "no-repeat";
-              header.classList.remove("is-solid");
-            }
-          };
-          window.addEventListener("scroll", solidOnScroll, { passive: true });
-          solidOnScroll();
-        }
-      };
+      function tintedBg(r, g, b) {
+        const base = [253, 250, 245];
+        const f = 0.78;
+        return [
+          Math.round(r + (base[0] - r) * f),
+          Math.round(g + (base[1] - g) * f),
+          Math.round(b + (base[2] - b) * f),
+        ];
+      }
 
-      Promise.resolve(window.siteHeaderReady).then(initHomeHeader);
+      window.contentReady.then(function (data) {
+        if (!data) return;
+        const { home, eventsPage, shared } = data;
+        const events = Array.isArray(eventsPage.items) ? eventsPage.items : [];
+
+        applyContent({
+          text: {
+            'home.title':    home.title,
+            'home.subtitle': home.subtitle,
+            'program.title': eventsPage.title,
+            'footer.home':   shared.footer.home,
+          },
+        });
+
+        const programList = document.querySelector('[data-program-list]');
+        if (!programList) return;
+        programList.innerHTML = '';
+
+        events.forEach((event, index) => {
+          if (!event) return;
+          const [r, g, b] = hexToRgb(cardColors[index] || '#E1B378');
+          const bg = tintedBg(r, g, b);
+          const bgStr = `rgb(${bg.join(',')})`;
+          const dr = Math.round(r * 0.45);
+          const dg = Math.round(g * 0.45);
+          const db = Math.round(b * 0.45);
+          const darkStr = `rgb(${dr},${dg},${db})`;
+
+          const card = document.createElement('article');
+          card.className = 'overflow-hidden rounded-[24px] flex flex-col h-full transition-transform duration-300 hover:-translate-y-1';
+          card.style.background = bgStr;
+          card.style.border = `1px solid rgba(${r},${g},${b},0.3)`;
+          card.style.boxShadow = `0 20px 60px rgba(${r},${g},${b},0.22)`;
+
+          const imageSection = document.createElement('div');
+          imageSection.className = 'relative flex-shrink-0 h-[220px]';
+
+          const imageBg = document.createElement('div');
+          imageBg.className = 'absolute inset-0 bg-cover bg-center';
+          imageBg.style.backgroundColor = `rgba(${r},${g},${b},0.3)`;
+          if (event.image) imageBg.style.backgroundImage = `url('${event.image}')`;
+
+          const imageGradient = document.createElement('div');
+          imageGradient.className = 'absolute inset-0';
+          imageGradient.style.background = `linear-gradient(to bottom, transparent 88%, ${bgStr} 100%)`;
+
+          imageSection.append(imageBg, imageGradient);
+
+          const content = document.createElement('div');
+          content.className = 'flex-1 flex flex-col justify-end px-5 pb-5 pt-3 gap-2';
+
+          const dayTimeEl = document.createElement('p');
+          dayTimeEl.className = 'text-[11px] m-0 tracking-wider uppercase';
+          dayTimeEl.style.color = darkStr;
+          dayTimeEl.textContent = [event.day, event.time].filter(Boolean).join(' · ');
+
+          const nameEl = document.createElement('h3');
+          nameEl.className = 'font-semibold text-[19px] m-0 leading-tight';
+          nameEl.style.color = '#1a1210';
+          nameEl.textContent = event.name || '';
+
+          const descEl = document.createElement('p');
+          descEl.className = 'text-[13px] leading-relaxed m-0';
+          descEl.style.color = 'rgba(61,44,42,0.6)';
+          descEl.textContent = event.description || '';
+
+          const chips = document.createElement('div');
+          chips.className = 'flex flex-wrap gap-2 mt-1';
+
+          if (event.location) {
+            const c = document.createElement('span');
+            c.className = 'text-[11px] px-3 py-1.5 rounded-full';
+            c.style.color = darkStr;
+            c.style.border = `1px solid rgba(${dr},${dg},${db},0.4)`;
+            c.style.background = `rgba(${r},${g},${b},0.15)`;
+            c.textContent = event.location;
+            chips.appendChild(c);
+          }
+
+          const ctaWrapper = document.createElement('div');
+          ctaWrapper.className = 'mt-auto pt-3';
+
+          const cta = document.createElement('a');
+          cta.className = 'block w-full text-center text-white font-semibold text-[13px] py-[13px] rounded-full no-underline';
+          const btnFactor = index === 3 ? 0.28 : 0.4;
+          cta.style.background = `rgb(${Math.round(r*btnFactor)},${Math.round(g*btnFactor)},${Math.round(b*btnFactor)})`;
+          cta.textContent = 'Voir sur Google Maps';
+          cta.href = mapLinks[index] || '#';
+          cta.target = '_blank';
+          cta.rel = 'noreferrer noopener';
+          ctaWrapper.appendChild(cta);
+
+          content.append(dayTimeEl, nameEl, descEl, chips, ctaWrapper);
+          card.append(imageSection, content);
+          programList.appendChild(card);
+        });
+      });
+
     })();
   </script>
 </body>

@@ -6,390 +6,272 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link 
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" 
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="tw.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <div class="page-shell">
-    <div data-site-header data-header-active="rsvp" data-header-solid="true"></div>
+<body class="min-h-screen font-sans antialiased text-brown-main [background:radial-gradient(circle_at_top_left,#fef7ee_0,#f7efe9_40%,#f2e5db_100%)]">
 
-    <main class="main-card">
-      <!-- En-tête de formulaire : titre, sous-titre et intro -->
-      <header class="page-header">
-        <p class="eyebrow" data-content="rsvp.eyebrow">
-        </p>
-        <h1 data-content="rsvp.title"></h1>
-        <p class="page-intro" data-content="rsvp.intro">
-        </p>
+  <div data-site-header data-header-active="rsvp" data-header-solid="true"></div>
+  <div class="max-w-[1120px] mx-auto mb-12 px-4">
+
+    <main class="mt-[18px] px-[26px] pt-7 pb-[30px] rounded-[24px] bg-white/90 border border-white/90 shadow-soft backdrop-blur-[18px]">
+
+      <header class="mb-6">
+        <p class="text-[13px] tracking-[0.08em] text-brown-soft m-0 mb-[10px]" data-content="rsvp.eyebrow"></p>
+        <h1 class="font-serif text-[28px] m-0 mb-[6px]" data-content="rsvp.title"></h1>
+        <p class="m-0 text-brown-muted text-[15px]" data-content="rsvp.intro"></p>
       </header>
 
       <form
-        class="rsvp-form"
+        class="flex flex-col gap-[18px]"
         action="https://script.google.com/macros/s/AKfycbxGjtncs1FufA3uFS-jqdViCIpNoVmihqFFPFIbux3_0-xUpgiVq69qV97FbyqoN1x1NA/exec"
         method="POST"
         enctype="application/x-www-form-urlencoded"
         accept-charset="UTF-8"
       >
-        <!-- Section 1 : infos de contact principales -->
-        <fieldset class="form-section">
-          <legend data-content="rsvp.section.info"></legend>
+        <!-- Section 1 : infos contact -->
+        <fieldset class="border border-[rgba(230,211,197,0.9)] rounded-[18px] px-4 pt-3 pb-4 bg-[#fffbf7]">
+          <legend class="text-[13px] uppercase tracking-[0.16em] text-brown-soft px-1" data-content="rsvp.section.info"></legend>
+          <div class="grid gap-[14px] mt-[10px]" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))">
 
-          <div class="form-grid">
-            <div class="form-field">
-              <label for="names">
-                <span data-content="rsvp.label.names"></span>
-                <span class="required">*</span>
+            <div class="flex flex-col gap-1">
+              <label class="text-[13px]" for="names">
+                <span data-content="rsvp.label.names"></span><span class="text-[#c45c4a]"> *</span>
               </label>
-              <input
-                type="text"
-                id="names"
-                name="names"
-                required
-                data-content="rsvp.placeholder.names"
-                placeholder="Ex : Grégoire Louis"
-              />
+              <input type="text" id="names" name="names" required
+                     class="rounded-xl border border-[rgba(196,167,148,0.6)] px-[10px] py-2 font-sans text-sm bg-[#fffdfb] transition-all duration-[160ms] focus:outline-none focus:border-accent focus:shadow-[0_0_0_1px_rgba(225,166,138,0.6)] focus:bg-white"
+                     data-content="rsvp.placeholder.names" placeholder="Ex : Grégoire Louis" />
             </div>
 
-            <div class="form-field">
-              <label for="email">
-                <span data-content="rsvp.label.email"></span>
-                <span class="required">*</span>
+            <div class="flex flex-col gap-1">
+              <label class="text-[13px]" for="email">
+                <span data-content="rsvp.label.email"></span><span class="text-[#c45c4a]"> *</span>
               </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                data-content="rsvp.placeholder.email"
-                placeholder="vous@example.com"
-              />
+              <input type="email" id="email" name="email" required
+                     class="rounded-xl border border-[rgba(196,167,148,0.6)] px-[10px] py-2 font-sans text-sm bg-[#fffdfb] transition-all duration-[160ms] focus:outline-none focus:border-accent focus:shadow-[0_0_0_1px_rgba(225,166,138,0.6)] focus:bg-white"
+                     data-content="rsvp.placeholder.email" placeholder="vous@example.com" />
             </div>
 
-            <div class="form-field">
-              <label for="phone" data-content="rsvp.label.phone"></label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                data-content="rsvp.placeholder.phone"
-                placeholder="+33 6 12 34 56 78"
-              />
+            <div class="flex flex-col gap-1">
+              <label class="text-[13px]" for="phone" data-content="rsvp.label.phone"></label>
+              <input type="tel" id="phone" name="phone"
+                     class="rounded-xl border border-[rgba(196,167,148,0.6)] px-[10px] py-2 font-sans text-sm bg-[#fffdfb] transition-all duration-[160ms] focus:outline-none focus:border-accent focus:shadow-[0_0_0_1px_rgba(225,166,138,0.6)] focus:bg-white"
+                     data-content="rsvp.placeholder.phone" placeholder="+33 6 12 34 56 78" />
             </div>
 
-            <div class="form-field">
-              <label for="address">
-                <span data-content="rsvp.label.address"></span>
+            <div class="flex flex-col gap-1">
+              <label class="text-[13px]" for="address" data-content="rsvp.label.address"></label>
+              <input type="text" id="address" name="address"
+                     class="rounded-xl border border-[rgba(196,167,148,0.6)] px-[10px] py-2 font-sans text-sm bg-[#fffdfb] transition-all duration-[160ms] focus:outline-none focus:border-accent focus:shadow-[0_0_0_1px_rgba(225,166,138,0.6)] focus:bg-white"
+                     data-content="rsvp.placeholder.address" placeholder="12 rue des Fleurs, 75000 Paris" />
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <label class="text-[13px]" for="guests">
+                <span data-content="rsvp.label.guests"></span><span class="text-[#c45c4a]"> *</span>
               </label>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                data-content="rsvp.placeholder.address"
-                placeholder="12 rue des Fleurs, 75000 Paris"
-              />
+              <input type="number" id="guests" name="guests" min="1" required
+                     class="rounded-xl border border-[rgba(196,167,148,0.6)] px-[10px] py-2 font-sans text-sm bg-[#fffdfb] transition-all duration-[160ms] focus:outline-none focus:border-accent focus:shadow-[0_0_0_1px_rgba(225,166,138,0.6)] focus:bg-white" />
             </div>
 
-            <div class="form-field">
-              <label for="guests">
-                <span data-content="rsvp.label.guests"></span>
-                <span class="required">*</span>
-              </label>
-              <input type="number" id="guests" name="guests" min="1" required />
-            </div>
           </div>
         </fieldset>
 
-        <!-- Section 2 : disponibilités événement par événement -->
-        <fieldset class="form-section">
-          <legend data-content="rsvp.section.presence"></legend>
-          <p class="section-help" data-content="rsvp.section.presenceHelp">
-          </p>
-
-          <div class="event-rsvp-list">
-            <div class="event-rsvp-item ui-form-row">
-              <div class="event-rsvp-label">
-                <span class="event-rsvp-name" data-content="rsvp.event1.name"></span>
-                <span class="event-rsvp-meta" data-content="rsvp.event1.meta"></span>
-              </div>
-              <div class="event-rsvp-options">
-                <label>
-                  <input type="radio" name="verre_accueil" value="oui" required />
-                  <span data-content="rsvp.option.present"></span>
-                </label>
-                <label>
-                  <input type="radio" name="verre_accueil" value="non" />
-                  <span data-content="rsvp.option.absent"></span>
-                </label>
-                <label>
-                  <input type="radio" name="verre_accueil" value="incertain" />
-                  <span data-content="rsvp.option.unsure"></span>
-                </label>
-              </div>
-            </div>
-
-            <div class="event-rsvp-item ui-form-row">
-              <div class="event-rsvp-label">
-                <span class="event-rsvp-name" data-content="rsvp.event2.name"></span>
-                <span class="event-rsvp-meta" data-content="rsvp.event2.meta"></span>
-              </div>
-              <div class="event-rsvp-options">
-                <label>
-                  <input type="radio" name="ceremonie" value="oui" required />
-                  <span data-content="rsvp.option.present"></span>
-                </label>
-                <label>
-                  <input type="radio" name="ceremonie" value="non" />
-                  <span data-content="rsvp.option.absent"></span>
-                </label>
-                <label>
-                  <input type="radio" name="ceremonie" value="incertain" />
-                  <span data-content="rsvp.option.unsure"></span>
-                </label>
-              </div>
-            </div>
-
-            <div class="event-rsvp-item ui-form-row">
-              <div class="event-rsvp-label">
-                <span class="event-rsvp-name" data-content="rsvp.event3.name"></span>
-                <span class="event-rsvp-meta" data-content="rsvp.event3.meta"></span>
-              </div>
-              <div class="event-rsvp-options">
-                <label>
-                  <input type="radio" name="reception" value="oui" required />
-                  <span data-content="rsvp.option.present"></span>
-                </label>
-                <label>
-                  <input type="radio" name="reception" value="non" />
-                  <span data-content="rsvp.option.absent"></span>
-                </label>
-                <label>
-                  <input type="radio" name="reception" value="incertain" />
-                  <span data-content="rsvp.option.unsure"></span>
-                </label>
-              </div>
-            </div>
-
-            <div class="event-rsvp-item ui-form-row">
-              <div class="event-rsvp-label">
-                <span class="event-rsvp-name" data-content="rsvp.event4.name"></span>
-                <span class="event-rsvp-meta" data-content="rsvp.event4.meta"></span>
-              </div>
-              <div class="event-rsvp-options">
-                <label>
-                  <input type="radio" name="Aperitivo" value="oui" required />
-                  <span data-content="rsvp.option.present"></span>
-                </label>
-                <label>
-                  <input type="radio" name="Aperitivo" value="non" />
-                  <span data-content="rsvp.option.absent"></span>
-                </label>
-                <label>
-                  <input type="radio" name="Aperitivo" value="incertain" />
-                  <span data-content="rsvp.option.unsure"></span>
-                </label>
-              </div>
-            </div>
+        <!-- Section 2 : présence -->
+        <fieldset class="border border-[rgba(230,211,197,0.9)] rounded-[18px] px-4 pt-3 pb-4 bg-[#fffbf7]">
+          <legend class="text-[13px] uppercase tracking-[0.16em] text-brown-soft px-1" data-content="rsvp.section.presence"></legend>
+          <p class="mt-2 mb-0 text-[13px] text-brown-muted" data-content="rsvp.section.presenceHelp"></p>
+          <div data-event-rsvp-list class="mt-[10px] flex flex-col gap-2">
+            <!-- lignes générées en JS -->
           </div>
         </fieldset>
 
-        <!-- Section 3 : contraintes alimentaires et message libre -->
-        <fieldset class="form-section">
-          <legend data-content="rsvp.section.extra"></legend>
+        <!-- Section 3 : extras -->
+        <fieldset class="border border-[rgba(230,211,197,0.9)] rounded-[18px] px-4 pt-3 pb-4 bg-[#fffbf7]">
+          <legend class="text-[13px] uppercase tracking-[0.16em] text-brown-soft px-1" data-content="rsvp.section.extra"></legend>
+          <div class="grid gap-[14px] mt-[10px]" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))">
 
-          <div class="form-grid">
-            <div class="form-field">
-              <label for="diet" data-content="rsvp.label.diet"></label>
-              <textarea
-                id="diet"
-                name="diet"
-                rows="3"
-                data-content="rsvp.placeholder.diet"
-                placeholder="Ex : végétarien, sans gluten, allergie aux noix…"
-              ></textarea>
+            <div class="flex flex-col gap-1">
+              <label class="text-[13px]" for="diet" data-content="rsvp.label.diet"></label>
+              <textarea id="diet" name="diet" rows="3"
+                        class="rounded-xl border border-[rgba(196,167,148,0.6)] px-[10px] py-2 font-sans text-sm bg-[#fffdfb] resize-y min-h-[80px] transition-all duration-[160ms] focus:outline-none focus:border-accent focus:shadow-[0_0_0_1px_rgba(225,166,138,0.6)] focus:bg-white"
+                        data-content="rsvp.placeholder.diet" placeholder="Ex : végétarien, sans gluten…"></textarea>
             </div>
 
-            <div class="form-field">
-              <label for="message" data-content="rsvp.label.message"></label>
-              <textarea
-                id="message"
-                name="message"
-                rows="3"
-                data-content="rsvp.placeholder.message"
-                placeholder="On a hâte de vous retrouver !"
-              ></textarea>
+            <div class="flex flex-col gap-1">
+              <label class="text-[13px]" for="message" data-content="rsvp.label.message"></label>
+              <textarea id="message" name="message" rows="3"
+                        class="rounded-xl border border-[rgba(196,167,148,0.6)] px-[10px] py-2 font-sans text-sm bg-[#fffdfb] resize-y min-h-[80px] transition-all duration-[160ms] focus:outline-none focus:border-accent focus:shadow-[0_0_0_1px_rgba(225,166,138,0.6)] focus:bg-white"
+                        data-content="rsvp.placeholder.message" placeholder="On a hâte de vous retrouver !"></textarea>
             </div>
+
           </div>
         </fieldset>
 
-        <div class="form-actions">
-          <button type="submit" class="btn btn-primary" data-content="rsvp.action.submit"></button>
-          <p class="form-note" data-content="rsvp.action.note">
-          </p>
-          <p class="form-status" aria-live="polite"></p>
+        <div class="mt-1 flex flex-col gap-[6px] items-start">
+          <button type="submit"
+                  class="inline-flex items-center justify-center px-[18px] py-[10px] rounded-full bg-[#18100f] text-[#fdf6f1] text-sm font-medium cursor-pointer border-0 shadow-[0_16px_30px_rgba(25,15,12,0.35)] transition-all duration-[160ms] hover:bg-[#241716] hover:-translate-y-px disabled:pointer-events-none"
+                  data-content="rsvp.action.submit"></button>
+          <p class="m-0 text-[12px] text-brown-soft" data-content="rsvp.action.note"></p>
+          <p data-form-status class="m-0 text-[13px] text-[#1b7f5c]" aria-live="polite"></p>
         </div>
       </form>
     </main>
 
-  <footer class="site-footer">
-    <p data-content="footer.rsvp"></p>
-  </footer>
-</div>
+    <footer class="mt-[18px] text-center text-[13px] text-brown-soft">
+      <p data-content="footer.rsvp"></p>
+    </footer>
+  </div>
 
   <script>
-    // URL de la Web App Apps Script (déploiement actuel)
     window.GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzWv-f0hAG8tn19SURMEDOcHg3Ht9xJw435XEOgDIt5qT5V-8LpIYlpkv2-7QtG6fW9/exec";
   </script>
   <script src="content.js"></script>
+  <script src="navbar.js"></script>
   <script>
     (function () {
-      const { shared, rsvpPage } = window.siteContent;
-      const events = Array.isArray(rsvpPage.events) ? rsvpPage.events : [];
-      const DEFAULT_GOOGLE_SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycbxGjtncs1FufA3uFS-jqdViCIpNoVmihqFFPFIbux3_0-xUpgiVq69qV97FbyqoN1x1NA/exec";
-      const GOOGLE_SCRIPT_URL = window.GOOGLE_SCRIPT_URL || DEFAULT_GOOGLE_SCRIPT_URL;
-      const hasCustomScriptUrl = Boolean(window.GOOGLE_SCRIPT_URL);
+      const DEFAULT_URL = "https://script.google.com/macros/s/AKfycbxGjtncs1FufA3uFS-jqdViCIpNoVmihqFFPFIbux3_0-xUpgiVq69qV97FbyqoN1x1NA/exec";
+      const SCRIPT_URL  = window.GOOGLE_SCRIPT_URL || DEFAULT_URL;
+      const EVENT_NAMES = ['verre_accueil', 'ceremonie', 'reception', 'Aperitivo'];
 
-      applyContent({
-        text: {
-          "brand.mark": shared.brandMark,
-          "brand.names": shared.brandNames,
-          "brand.sub": shared.brandSub,
-          "nav.program": shared.nav.program,
-          "nav.venue": shared.nav.venue,
-          "nav.list": shared.nav.list,
-          "nav.dresscode": shared.nav.dresscode,
-          "nav.rsvp": shared.nav.rsvp,
-          "rsvp.eyebrow": rsvpPage.eyebrow,
-          "rsvp.title": rsvpPage.title,
-          "rsvp.intro": rsvpPage.intro,
-          "rsvp.section.info": rsvpPage.sections.info,
-          "rsvp.section.presence": rsvpPage.sections.presence,
-          "rsvp.section.presenceHelp": rsvpPage.sections.presenceHelp,
-          "rsvp.section.extra": rsvpPage.sections.extra,
-          "rsvp.label.names": rsvpPage.labels.names,
-          "rsvp.label.email": rsvpPage.labels.email,
-          "rsvp.label.phone": rsvpPage.labels.phone,
-          "rsvp.label.address": rsvpPage.labels.address,
-          "rsvp.label.guests": rsvpPage.labels.guests,
-          "rsvp.label.diet": rsvpPage.labels.diet,
-          "rsvp.label.message": rsvpPage.labels.message,
-          "rsvp.event1.name": events[0].name,
-          "rsvp.event1.meta": events[0].meta,
-          "rsvp.event2.name": events[1].name,
-          "rsvp.event2.meta": events[1].meta,
-          "rsvp.event3.name": events[2].name,
-          "rsvp.event3.meta": events[2].meta,
-          "rsvp.event4.name": events[3].name,
-          "rsvp.event4.meta": events[3].meta,
-          "rsvp.option.present": rsvpPage.options.present,
-          "rsvp.option.absent": rsvpPage.options.absent,
-          "rsvp.option.unsure": rsvpPage.options.unsure,
-          "rsvp.option.interested": rsvpPage.options.interested,
-          "rsvp.option.notInterested": rsvpPage.options.notInterested,
-          "rsvp.action.submit": rsvpPage.actions.submit,
-          "rsvp.action.note": rsvpPage.actions.note,
-          "footer.rsvp": shared.footer.rsvp,
-        },
-        attrs: {
-          "rsvp.placeholder.names": { placeholder: rsvpPage.placeholders.names },
-          "rsvp.placeholder.email": { placeholder: rsvpPage.placeholders.email },
-          "rsvp.placeholder.phone": { placeholder: rsvpPage.placeholders.phone },
-          "rsvp.placeholder.address": { placeholder: rsvpPage.placeholders.address },
-          "rsvp.placeholder.diet": { placeholder: rsvpPage.placeholders.diet },
-          "rsvp.placeholder.message": { placeholder: rsvpPage.placeholders.message },
-        },
-      });
+      window.contentReady.then(function (data) {
+        if (!data) return;
+        const { shared, rsvpPage } = data;
+        const events = Array.isArray(rsvpPage.events) ? rsvpPage.events : [];
 
-      const form = document.querySelector(".rsvp-form");
-      const statusEl = document.querySelector(".form-status");
-      const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
-      const setStatus = (message, isError = false) => {
-        if (!statusEl) return;
-        statusEl.textContent = message || "";
-        statusEl.classList.toggle("is-error", Boolean(isError));
-      };
-      if (!hasCustomScriptUrl) {
-        console.warn(
-          "RSVP: aucune URL de script personnalisée définie. Définissez window.GOOGLE_SCRIPT_URL avec l'URL /exec de votre Apps Script Web App."
-        );
-      }
+        applyContent({
+          text: {
+            'rsvp.eyebrow':              rsvpPage.eyebrow,
+            'rsvp.title':                rsvpPage.title,
+            'rsvp.intro':                rsvpPage.intro,
+            'rsvp.section.info':         rsvpPage.sections.info,
+            'rsvp.section.presence':     rsvpPage.sections.presence,
+            'rsvp.section.presenceHelp': rsvpPage.sections.presenceHelp,
+            'rsvp.section.extra':        rsvpPage.sections.extra,
+            'rsvp.label.names':          rsvpPage.labels.names,
+            'rsvp.label.email':          rsvpPage.labels.email,
+            'rsvp.label.phone':          rsvpPage.labels.phone,
+            'rsvp.label.address':        rsvpPage.labels.address,
+            'rsvp.label.guests':         rsvpPage.labels.guests,
+            'rsvp.label.diet':           rsvpPage.labels.diet,
+            'rsvp.label.message':        rsvpPage.labels.message,
+            'rsvp.action.submit':        rsvpPage.actions.submit,
+            'rsvp.action.note':          rsvpPage.actions.note,
+            'footer.rsvp':               shared.footer.rsvp,
+          },
+          attrs: {
+            'rsvp.placeholder.names':   { placeholder: rsvpPage.placeholders.names },
+            'rsvp.placeholder.email':   { placeholder: rsvpPage.placeholders.email },
+            'rsvp.placeholder.phone':   { placeholder: rsvpPage.placeholders.phone },
+            'rsvp.placeholder.address': { placeholder: rsvpPage.placeholders.address },
+            'rsvp.placeholder.diet':    { placeholder: rsvpPage.placeholders.diet },
+            'rsvp.placeholder.message': { placeholder: rsvpPage.placeholders.message },
+          },
+        });
 
-      if (form) {
-        // Assure l'action correcte en cas d'override externe.
-        form.action = GOOGLE_SCRIPT_URL;
-        form.method = "POST";
-        form.enctype = "application/x-www-form-urlencoded";
-        form.acceptCharset = "UTF-8";
+        // Lignes de présence par événement
+        const list = document.querySelector('[data-event-rsvp-list]');
+        if (list) {
+          list.innerHTML = '';
+          events.forEach((ev, i) => {
+            const fieldName = EVENT_NAMES[i] || `event_${i}`;
+            const row = document.createElement('div');
+            row.className = 'flex flex-wrap gap-[10px] px-[11px] py-[10px] rounded-[14px] bg-white/90 border border-dashed border-[rgba(206,178,158,0.9)]';
 
-        // Ajoute/alimente un champ timestamp pour éviter un payload vide.
-        let tsInput = form.querySelector('input[name="timestamp"]');
-        if (!tsInput) {
-          tsInput = document.createElement("input");
-          tsInput.type = "hidden";
-          tsInput.name = "timestamp";
-          form.appendChild(tsInput);
+            const label = document.createElement('div');
+            label.className = 'min-w-[200px] flex-1';
+            label.innerHTML = `<span class="text-sm font-medium">${ev.name || ''}</span><span class="block text-[12px] text-brown-soft">${ev.meta || ''}</span>`;
+
+            const options = document.createElement('div');
+            options.className = 'flex flex-wrap gap-x-[14px] gap-y-2 items-center';
+
+            [
+              { value: 'oui',       label: rsvpPage.options.present },
+              { value: 'non',       label: rsvpPage.options.absent },
+              { value: 'incertain', label: rsvpPage.options.unsure },
+            ].forEach(({ value, label: optLabel }, oi) => {
+              const lEl = document.createElement('label');
+              lEl.className = 'text-[13px] inline-flex items-center gap-[5px] cursor-pointer';
+              const inp = document.createElement('input');
+              inp.type  = 'radio';
+              inp.name  = fieldName;
+              inp.value = value;
+              if (oi === 0) inp.required = true;
+              lEl.append(inp, document.createTextNode(optLabel));
+              options.appendChild(lEl);
+            });
+
+            row.append(label, options);
+            list.appendChild(row);
+          });
         }
 
-        const sendWithFallback = async (formData) => {
-          // Convertit le FormData en application/x-www-form-urlencoded pour que Apps Script parse bien e.parameter.
-          const urlBody = new URLSearchParams();
-          for (const [key, value] of formData.entries()) {
-            urlBody.append(key, value);
-          }
+        // Submit
+        const form      = document.querySelector('form');
+        const statusEl  = document.querySelector('[data-form-status]');
+        const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
 
-          // Tente d'abord le mode CORS pour remonter les erreurs (script non public, mauvaise URL…),
-          // puis repasse en no-cors pour les déploiements sans header CORS.
-          try {
-            const response = await fetch(GOOGLE_SCRIPT_URL, {
-              method: "POST",
-              headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-              body: urlBody,
-              mode: "cors",
-              credentials: "omit",
-            });
-            if (!response.ok) {
-              throw new Error(`HTTP ${response.status}`);
-            }
-            return "cors";
-          } catch (error) {
-            console.warn("RSVP: échec en mode CORS, nouvel essai en no-cors", error);
-            await fetch(GOOGLE_SCRIPT_URL, {
-              method: "POST",
-              headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-              body: urlBody,
-              mode: "no-cors",
-            });
-            return "opaque";
-          }
+        const setStatus = (msg, isError = false) => {
+          if (!statusEl) return;
+          statusEl.textContent = msg || '';
+          statusEl.style.color = isError ? '#c45c4a' : '#1b7f5c';
         };
 
-        form.addEventListener("submit", async (event) => {
-          event.preventDefault();
-          tsInput.value = new Date().toISOString();
-          setStatus("Envoi en cours…");
-          if (submitBtn) submitBtn.disabled = true;
+        if (form) {
+          form.action       = SCRIPT_URL;
+          form.method       = 'POST';
+          form.enctype      = 'application/x-www-form-urlencoded';
+          form.acceptCharset = 'UTF-8';
 
-          const formData = new FormData(form);
-
-          try {
-            const mode = await sendWithFallback(formData);
-            const successNote =
-              mode === "cors"
-                ? "Réponse envoyée."
-                : "Réponse envoyée (confirmation silencieuse). Vérifiez qu’elle apparaît dans le Google Sheet.";
-            setStatus(successNote);
-            form.reset();
-          } catch (err) {
-            console.error("RSVP submit error", err);
-            setStatus("Échec de l’envoi. Vérifiez votre connexion ou réessayez plus tard.", true);
-          } finally {
-            if (submitBtn) submitBtn.disabled = false;
+          let tsInput = form.querySelector('input[name="timestamp"]');
+          if (!tsInput) {
+            tsInput = Object.assign(document.createElement('input'), { type: 'hidden', name: 'timestamp' });
+            form.appendChild(tsInput);
           }
-        });
-      }
+
+          const sendWithFallback = async (formData) => {
+            const body = new URLSearchParams();
+            for (const [k, v] of formData.entries()) body.append(k, v);
+            try {
+              const res = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+                body, mode: 'cors', credentials: 'omit',
+              });
+              if (!res.ok) throw new Error(`HTTP ${res.status}`);
+              return 'cors';
+            } catch (err) {
+              console.warn('RSVP: échec CORS, nouvel essai en no-cors', err);
+              await fetch(SCRIPT_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+                body, mode: 'no-cors',
+              });
+              return 'opaque';
+            }
+          };
+
+          form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            tsInput.value = new Date().toISOString();
+            setStatus('Envoi en cours…');
+            if (submitBtn) submitBtn.disabled = true;
+            try {
+              const mode = await sendWithFallback(new FormData(form));
+              setStatus(mode === 'cors'
+                ? 'Réponse envoyée.'
+                : 'Réponse envoyée (confirmation silencieuse). Vérifiez le Google Sheet.');
+              form.reset();
+            } catch (err) {
+              console.error('RSVP submit error', err);
+              setStatus("Échec de l'envoi. Vérifiez votre connexion ou réessayez plus tard.", true);
+            } finally {
+              if (submitBtn) submitBtn.disabled = false;
+            }
+          });
+        }
+      });
     })();
   </script>
 </body>

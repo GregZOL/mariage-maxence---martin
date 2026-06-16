@@ -6,89 +6,100 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link 
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" 
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="tw.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <div class="page-shell">
-    <div data-site-header data-header-active="list" data-header-solid="true"></div>
+<body class="min-h-screen font-sans antialiased text-brown-main [background:radial-gradient(circle_at_top_left,#fef7ee_0,#f7efe9_40%,#f2e5db_100%)]">
 
-    <main class="main-card wedding-list-page">
-      <section class="wedding-list-section wedding-list-section--foundation" data-content="list.foundation.sectionLabel" aria-label="">
-        <div class="wedding-list-media wedding-list-media--logo">
-          <a
-            class="wedding-list-image-link"
-            href="https://www.helloasso.com/associations/fondation-pour-l-enfance/formulaires/8"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            <span class="wedding-list-logo-wrap">
-              <img src="assets/LOGO_Goeland_26_avril_2022.png" data-content="list.foundation.logoAlt" alt="" />
-            </span>
-          </a>
-        </div>
-        <div class="venue-block wedding-list-block">
-          <p class="wedding-list-text" data-content="list.foundation.text"></p>
-        </div>
-      </section>
+  <div data-site-header data-header-active="list" data-header-solid="true"></div>
+  <div class="max-w-[1120px] mx-auto mb-12 px-4">
 
-      <section class="wedding-list-section wedding-list-section--couple" data-content="list.couple.sectionLabel" aria-label="">
-        <div class="wedding-list-media">
-          <a
-            class="wedding-list-image-link"
-            href="https://www.millemercismariage.com/maxencemartin-0108/liste.html"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            <span class="wedding-list-image-wrap">
-              <!-- <img src="assets/photo-maries.jpeg" data-content="list.couple.imageAlt" alt="" />  -->
-              <img class="image4" src="assets/bandana.png" data-content="list.couple.imageAlt" alt="" />
-              <img class="image4" src="assets/blur.png" data-content="list.couple.imageAlt" alt="" />
-              <img class="image4" src="assets/spacegirl.png" data-content="list.couple.imageAlt" alt="" />
-              <img class="image4" src="assets/spaceguy.png" data-content="list.couple.imageAlt" alt="" />
-              
-            </span>
-          </a>
+    <main class="mt-8 flex flex-col gap-8">
+
+      <!-- En-tête -->
+      <header class="text-center pt-4">
+        <p class="text-[10px] tracking-[0.32em] uppercase text-brown-muted m-0 mb-3" data-content="list.eyebrow"></p>
+        <h1 class="font-serif text-[clamp(28px,4.5vw,48px)] text-[#1a1210] font-[500] m-0 leading-tight" data-content="list.title"></h1>
+        <div class="flex items-center gap-4 max-w-[160px] mx-auto mt-4">
+          <div class="flex-1 h-px bg-gradient-to-r from-transparent to-[#3d2c2a]/15"></div>
+          <span class="text-[#3d2c2a]/20 text-[10px]">◆</span>
+          <div class="flex-1 h-px bg-gradient-to-l from-transparent to-[#3d2c2a]/15"></div>
         </div>
-        <div class="venue-block wedding-list-block">
-          <p class="wedding-list-text" data-content="list.couple.text"></p>
+      </header>
+
+      <!-- Les deux options -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 items-start">
+
+        <!-- Fondation Les Goélands -->
+        <div class="flex flex-col overflow-hidden rounded-[28px] bg-[#fdf7ed] border border-[rgba(200,150,55,0.22)] shadow-[0_24px_64px_rgba(180,120,40,0.13)]">
+
+          <div class="flex items-center justify-center bg-white/50 px-10 h-[240px]">
+            <img src="assets/LOGO_Goeland_26_avril_2022.png" alt="Logo Fondation Les Goélands"
+                 class="max-h-[140px] w-auto object-contain" />
+          </div>
+
+          <div class="flex flex-col px-7 pt-5 pb-7 gap-5">
+            <div class="flex flex-col gap-2">
+              <p class="text-[10px] tracking-[0.28em] uppercase font-semibold m-0 text-[#9b6a28]">Fondation Les Goélands</p>
+              <p class="text-[14px] leading-[1.8] text-[#3d2c2a]/75 m-0 whitespace-pre-line" data-content="list.foundation.text"></p>
+            </div>
+            <a href="https://www.kagnotte.com/k/19429.html" target="_blank" rel="noreferrer noopener"
+               class="flex items-center justify-center gap-2 px-6 py-[14px] rounded-full bg-[#1a1210] text-white text-[13px] font-semibold no-underline transition-all duration-200 hover:bg-[#2f1c16] hover:-translate-y-px">
+              Donner à la Fondation
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M2 6.5h9M7.5 2.5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
         </div>
-      </section>
+
+        <!-- Liste mariés -->
+        <div class="flex flex-col overflow-hidden rounded-[28px] bg-[#fdf2ee] border border-[rgba(190,95,80,0.2)] shadow-[0_24px_64px_rgba(180,80,60,0.11)]">
+
+          <div class="flex flex-row overflow-hidden h-[240px]">
+            <div class="flex-1 overflow-hidden"><img src="assets/bandana.png"   class="w-full h-full object-cover" alt="" /></div>
+            <div class="flex-1 overflow-hidden"><img src="assets/blur.png"      class="w-full h-full object-cover" alt="" /></div>
+            <div class="flex-1 overflow-hidden"><img src="assets/spacegirl.png" class="w-full h-full object-cover" alt="" /></div>
+            <div class="flex-1 overflow-hidden"><img src="assets/spaceguy.png"  class="w-full h-full object-cover" alt="" /></div>
+          </div>
+
+          <div class="flex flex-col px-7 pt-5 pb-7 gap-5">
+            <div class="flex flex-col gap-2">
+              <p class="text-[10px] tracking-[0.28em] uppercase font-semibold m-0 text-[#9b3a30]">Attention destinée aux mariés</p>
+              <p class="text-[14px] leading-[1.8] text-[#3d2c2a]/75 m-0 whitespace-pre-line" data-content="list.couple.text"></p>
+            </div>
+            <a href="https://www.millemercismariage.com/maxencemartin-0108/liste.html" target="_blank" rel="noreferrer noopener"
+               class="flex items-center justify-center gap-2 px-6 py-[14px] rounded-full bg-[#1a1210] text-white text-[13px] font-semibold no-underline transition-all duration-200 hover:bg-[#2f1c16] hover:-translate-y-px">
+              Voir la liste
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M2 6.5h9M7.5 2.5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
     </main>
 
-    <footer class="site-footer">
+    <footer class="mt-[18px] text-center text-[13px] text-brown-soft">
       <p data-content="footer.list"></p>
     </footer>
   </div>
 
   <script src="content.js"></script>
+  <script src="navbar.js"></script>
   <script>
     (function () {
-      const { shared, listPage } = window.siteContent;
+      window.contentReady.then(function (data) {
+        if (!data) return;
+        const { shared, listPage } = data;
 
-      applyContent({
-        text: {
-          "brand.mark": shared.brandMark,
-          "brand.names": shared.brandNames,
-          "brand.sub": shared.brandSub,
-          "nav.program": shared.nav.program,
-          "nav.venue": shared.nav.venue,
-          "nav.list": shared.nav.list,
-          "nav.dresscode": shared.nav.dresscode,
-          "nav.rsvp": shared.nav.rsvp,
-          "list.foundation.text": listPage.foundation.text,
-          "list.couple.text": listPage.couple.text,
-          "footer.list": shared.footer.list,
-        },
-        attrs: {
-          "list.foundation.sectionLabel": { "aria-label": listPage.foundation.sectionLabel },
-          "list.foundation.logoAlt": { alt: listPage.foundation.logoAlt },
-          "list.couple.sectionLabel": { "aria-label": listPage.couple.sectionLabel },
-          "list.couple.imageAlt": { alt: listPage.couple.imageAlt },
-        },
+        applyContent({
+          text: {
+            'list.eyebrow':         listPage.eyebrow,
+            'list.title':           listPage.title,
+            'list.foundation.text': listPage.foundation.text,
+            'list.couple.text':     listPage.couple.text,
+            'footer.list':          shared.footer.list,
+          },
+        });
       });
     })();
   </script>

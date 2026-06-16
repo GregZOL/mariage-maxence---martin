@@ -1,13 +1,70 @@
-<header class="site-header ui-header">
-  <div class="site-header-inner ui-header-inner">
-    <a href="index.html" class="brand-button" data-content="brand.mark" aria-label="Retour à l'accueil"></a>
-    <nav class="site-nav" aria-label="Navigation principale">
-      <a href="lieu.html" class="nav-link" data-nav-id="venue" data-content="nav.venue"></a>
-      <a href="liste-mariage.html" class="nav-link" data-nav-id="list" data-content="nav.listLink">
-        <span class="nav-label nav-label--desktop" data-content="nav.listFull"></span>
-        <span class="nav-label nav-label--mobile" data-content="nav.list"></span>
+<style>
+  header[data-solid="true"] a[data-active="true"][data-nav-id] { color: #c9825e; }
+</style>
+
+<header
+  data-solid="false"
+  class="group sticky top-0 z-50 w-full transition-all duration-300
+         data-[solid=true]:bg-white/95
+         data-[solid=true]:backdrop-blur-[10px]"
+>
+  <div class="max-w-[1120px] mx-auto px-4 flex items-center justify-between gap-[10px]
+              group-data-[solid=true]:pt-3 group-data-[solid=true]:pb-2">
+
+    <a href="index.html"
+       aria-label="Retour à l'accueil"
+       data-content="brand.mark"
+       class="font-serif text-[clamp(20px,2.2vw,26px)] tracking-[0.08em] uppercase no-underline
+              text-accent-strong transition-colors duration-[160ms]
+              hover:text-[#f3d6c0]
+              group-data-[solid=true]:text-[#2f1c16]
+              sm:text-[24px]">
+    </a>
+
+    <nav class="flex items-center gap-3 ml-auto overflow-x-auto py-1
+                [scrollbar-width:none] [&::-webkit-scrollbar]:hidden
+                sm:gap-[18px]">
+
+      <a href="lieu.html"
+         data-nav-id="venue"
+         data-active="false"
+         data-content="nav.venue"
+         class="px-1 py-[6px] text-sm font-noto font-semibold no-underline whitespace-nowrap transition-colors duration-[160ms]
+                text-[#f5e6d9]
+                hover:text-accent-strong focus-visible:text-accent-strong
+                data-[active=true]:text-white
+                group-data-[solid=true]:text-[#3d2c2a]
+                group-data-[solid=true]:hover:text-accent-strong
+                sm:text-[15px]">
       </a>
-      <a href="rsvp.html" class="nav-link nav-primary" data-nav-id="rsvp" data-content="nav.rsvp"></a>
+
+      <a href="liste-mariage.html"
+         data-nav-id="list"
+         data-active="false"
+         class="px-1 py-[6px] text-sm font-noto font-semibold no-underline whitespace-nowrap transition-colors duration-[160ms]
+                text-[#f5e6d9]
+                hover:text-accent-strong focus-visible:text-accent-strong
+                data-[active=true]:text-white
+                group-data-[solid=true]:text-[#3d2c2a]
+                group-data-[solid=true]:hover:text-accent-strong
+                sm:text-[15px]">
+        <span class="hidden sm:inline" data-content="nav.listFull"></span>
+        <span class="sm:hidden" data-content="nav.list"></span>
+      </a>
+
+      <a href="rsvp.html"
+         data-nav-id="rsvp"
+         data-active="false"
+         data-content="nav.rsvp"
+         class="px-1 py-[6px] text-sm font-noto font-semibold no-underline whitespace-nowrap transition-colors duration-[160ms]
+                text-white
+                hover:text-accent-strong focus-visible:text-accent-strong
+                data-[active=true]:text-white
+                group-data-[solid=true]:text-[#3d2c2a]
+                group-data-[solid=true]:hover:text-accent-strong
+                sm:text-[15px]">
+      </a>
+
     </nav>
   </div>
 </header>

@@ -6,123 +6,125 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link 
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" 
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="tw.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <script src="mapLinks.js"></script>
 </head>
-<body>
-  <div class="page-shell">
-    <div data-site-header data-header-active="venue" data-header-solid="true"></div>
+<body class="min-h-screen font-sans antialiased text-brown-main [background:radial-gradient(circle_at_top_left,#fef7ee_0,#f7efe9_40%,#f2e5db_100%)]">
 
-    <!-- Hero Lieu -->
-    <section class="hero-section hero-section--lieu">
-      <div class="hero-bg" style="background-image: url('assets/lieu.jpg');">
-        <div class="hero-gradient"></div>
-      </div>
-      <div class="hero-content">
-        <h1 class="hero-title" data-content="venue.title"></h1>
-        <p class="hero-date" data-content="venue.address"></p>
-      </div>
-    </section>
+  <div data-site-header data-header-active="venue" data-header-solid="true"></div>
+  <div class="max-w-[1120px] mx-auto px-4 mb-12">
 
-    <main class="main-card">
-      <header class="page-header">
-        <p class="sous-titre_1" data-content="venue.eyebrow"></p>
-        <h1 data-content="venue.title"></h1>
-        <p class="page-intro" data-content="venue.intro"></p>
-      </header>
+    <main class="flex flex-col gap-4">
 
-      <section class="venue-layout">
-        <div class="venue-block">
-          <h3 data-content="venue.addressTitle"></h3>
-          <p class="venue-text" data-content="venue.address"></p>
-          <a class="btn btn-primary" id="venue-map-link" target="_blank" rel="noreferrer noopener" data-content="venue.mapCta"></a>
-          <div class="venue-map-embed">
-            <iframe
-              id="venue-map-iframe"
-              src=""
-              style="border:0;"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
+      <!-- Hero : colle le header, radius uniquement en bas -->
+      <section class="relative h-[58vh] min-h-[360px] flex flex-col justify-end overflow-hidden rounded-b-[28px]">
+        <div class="absolute inset-0 bg-cover bg-center"
+             style="background-image: url('assets/lieu.jpg')"></div>
+        <div class="absolute inset-0"
+             style="background: linear-gradient(to bottom, transparent 25%, rgba(18,9,6,0.2) 65%, rgba(18,9,6,0.6) 100%)"></div>
+        <div class="relative z-10 px-8 pb-9 flex flex-col gap-[10px]">
+          <p class="text-[10px] tracking-[0.32em] uppercase text-white/55 m-0" data-content="venue.eyebrow"></p>
+          <h1 class="font-serif text-[clamp(32px,5vw,56px)] text-white m-0 font-[500] leading-none [text-shadow:0_4px_24px_rgba(0,0,0,0.28)]" data-content="venue.title"></h1>
+          <p class="text-white/65 text-[15px] m-0 font-light" data-content="venue.address"></p>
+        </div>
+      </section>
+
+      <!-- Infos + Map -->
+      <div class="grid grid-cols-1 sm:grid-cols-[360px_1fr] gap-4 items-start">
+
+        <!-- Colonne gauche -->
+        <div class="flex flex-col gap-4">
+
+          <!-- Adresse -->
+          <div class="rounded-[22px] bg-[#fdf7ed] border border-[rgba(200,150,55,0.22)] shadow-[0_8px_28px_rgba(180,120,40,0.08)] px-6 py-5 flex flex-col gap-3">
+            <p class="text-[10px] tracking-[0.28em] uppercase font-semibold m-0 text-[#9b6a28]" data-content="venue.addressTitle"></p>
+            <p class="text-[#3d2c2a] text-[14px] leading-relaxed m-0" data-content="venue.address"></p>
+            <a id="venue-map-link" href="#" target="_blank" rel="noreferrer noopener"
+               class="self-start flex items-center gap-[6px] px-5 py-[11px] rounded-full bg-[#1a1210] text-white text-[13px] font-semibold no-underline transition-all duration-200 hover:bg-[#2f1c16] hover:-translate-y-px">
+              <span data-content="venue.mapCta"></span>
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M2 6.5h9M7.5 2.5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
           </div>
-        </div>
-      </section>
 
-      <section>
-        <div class="venue-block">
-          <h3 data-content="venue.accessTitle"></h3>
-          <ul class="venue-list" data-content="venue.accessList"></ul>
-        </div>
-      </section>
+          <!-- Accès -->
+          <div class="rounded-[22px] bg-[#f5ede3] border border-[rgba(180,120,70,0.2)] shadow-[0_8px_28px_rgba(160,100,50,0.07)] px-6 py-5 flex flex-col gap-3">
+            <p class="text-[10px] tracking-[0.28em] uppercase font-semibold m-0 text-[#7a4e2a]" data-content="venue.accessTitle"></p>
+            <ul data-access-list class="m-0 p-0 list-none flex flex-col gap-[10px]"></ul>
+          </div>
 
-      <section>
-        <div class="venue-block">
-          <h3 data-content="venue.tipsTitle"></h3>
-          <ul class="venue-list" data-content="venue.tipsList"></ul>
+          <!-- Hébergements -->
+          <div class="rounded-[22px] bg-[#f0e8de] border border-[rgba(160,110,70,0.18)] shadow-[0_8px_28px_rgba(140,90,40,0.07)] px-6 py-5 flex flex-col gap-3">
+            <p class="text-[10px] tracking-[0.28em] uppercase font-semibold m-0 text-[#7a4e2a]" data-content="venue.tipsTitle"></p>
+            <ul data-tips-list class="m-0 p-0 list-none flex flex-col gap-[10px]"></ul>
+          </div>
+
         </div>
-      </section>
+
+        <!-- Map -->
+        <div class="rounded-[22px] overflow-hidden shadow-[0_16px_48px_rgba(30,15,8,0.14)] sticky top-[80px]" style="height:520px">
+          <iframe id="venue-map-iframe" src="" class="w-full h-full border-0"
+                  allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+      </div>
     </main>
 
-    <footer class="site-footer">
+    <footer class="mt-5 text-center text-[13px] text-brown-soft">
       <p data-content="footer.events"></p>
     </footer>
   </div>
 
   <script src="content.js"></script>
+  <script src="navbar.js"></script>
   <script>
     (function () {
-      const { shared, venuePage } = window.siteContent;
-      const mapLink = (window.mapLinks && window.mapLinks.venue) || "#";
-      const mapEmbed = (window.mapLinks && window.mapLinks.venueEmbed) || "";
+      const mapLink  = (window.mapLinks && window.mapLinks.venue)      || '#';
+      const mapEmbed = (window.mapLinks && window.mapLinks.venueEmbed) || '';
 
-      applyContent({
-        text: {
-          "brand.mark": shared.brandMark,
-          "brand.names": shared.brandNames,
-          "brand.sub": shared.brandSub,
-          "nav.program": shared.nav.program,
-          "nav.venue": shared.nav.venue,
-          "nav.list": shared.nav.list,
-          "nav.dresscode": shared.nav.dresscode,
-          "nav.rsvp": shared.nav.rsvp,
-          "venue.eyebrow": venuePage.eyebrow,
-          "venue.title": venuePage.title,
-          "venue.intro": venuePage.intro,
-          "venue.addressTitle": venuePage.addressTitle,
-          "venue.address": venuePage.address,
-          "venue.accessTitle": venuePage.accessTitle,
-          "venue.tipsTitle": venuePage.tipsTitle,
-          "venue.mapCta": venuePage.mapCta,
-          "footer.events": shared.footer.events,
-        },
-      });
+      window.contentReady.then(function (data) {
+        if (!data) return;
+        const { shared, venuePage } = data;
 
-      const buildList = (selector, items = []) => {
-        const list = document.querySelector(selector);
-        if (!list) return;
-        list.innerHTML = "";
-        items.filter(Boolean).forEach((item) => {
-          const li = document.createElement("li");
-          li.textContent = item;
-          list.appendChild(li);
+        applyContent({
+          text: {
+            'venue.eyebrow':      venuePage.eyebrow,
+            'venue.title':        venuePage.title,
+            'venue.address':      venuePage.address,
+            'venue.addressTitle': venuePage.addressTitle,
+            'venue.accessTitle':  venuePage.accessTitle,
+            'venue.tipsTitle':    venuePage.tipsTitle,
+            'venue.mapCta':       venuePage.mapCta,
+            'footer.events':      shared.footer.events,
+          },
         });
-      };
 
-      buildList('[data-content="venue.accessList"]', venuePage.access);
-      buildList('[data-content="venue.tipsList"]', venuePage.tips);
+        const buildList = (selector, items = []) => {
+          const list = document.querySelector(selector);
+          if (!list) return;
+          list.innerHTML = '';
+          items.filter(Boolean).forEach((item) => {
+            const li = document.createElement('li');
+            li.className = 'flex items-start gap-2 text-[14px] text-[#3d2c2a] leading-relaxed';
+            const dot = document.createElement('span');
+            dot.className = 'mt-[7px] flex-shrink-0 w-[5px] h-[5px] rounded-full bg-[#b48060] opacity-70';
+            const txt = document.createElement('span');
+            txt.textContent = item;
+            li.append(dot, txt);
+            list.appendChild(li);
+          });
+        };
 
-      const mapBtn = document.getElementById("venue-map-link");
-      if (mapBtn) mapBtn.href = mapLink;
+        buildList('[data-access-list]', venuePage.access);
+        buildList('[data-tips-list]',   venuePage.tips);
 
-      const mapIframe = document.getElementById("venue-map-iframe");
-      if (mapIframe && mapEmbed) {
-        mapIframe.src = mapEmbed;
-      }
+        const btn = document.getElementById('venue-map-link');
+        if (btn) btn.href = mapLink;
+
+        const iframe = document.getElementById('venue-map-iframe');
+        if (iframe && mapEmbed) iframe.src = mapEmbed;
+      });
     })();
   </script>
 </body>

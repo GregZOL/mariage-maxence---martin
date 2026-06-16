@@ -6,135 +6,156 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link 
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" 
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="tw.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <div class="page-shell">
-    <div data-site-header></div>
+<body class="min-h-screen font-sans antialiased text-brown-main [background:radial-gradient(circle_at_top_left,#fef7ee_0,#f7efe9_40%,#f2e5db_100%)]">
 
-    <main class="main-card">
-      <!-- En-tête de page : titre et courte explication du programme -->
-      <header class="page-header">
-        <p class="sous-titre_1" data-content="events.eyebrow"></p>
-        <h1 data-content="events.title"></h1>
-        <p class="page-intro" data-content="events.intro">
-        </p>
+  <div data-site-header></div>
+  <div class="max-w-[1120px] mx-auto mb-12 px-4">
+
+    <main class="mt-[18px] px-[26px] pt-7 pb-[30px] rounded-[24px] bg-white/90 border border-white/90 shadow-soft backdrop-blur-[18px]">
+
+      <header class="mb-6">
+        <p class="text-[13px] tracking-[0.08em] text-brown-soft m-0 mb-[10px]" data-content="events.eyebrow"></p>
+        <h1 class="font-serif text-[28px] m-0 mb-[6px]" data-content="events.title"></h1>
+        <p class="m-0 text-brown-muted text-[15px]" data-content="events.intro"></p>
       </header>
 
-      <!-- Grille des 4 temps forts (cartes événementielles) -->
-      <section class="cards-grid">
-        <!-- Les cartes événements sont injectées en JS -->
+      <section data-cards-grid class="grid gap-5 justify-center" style="grid-template-columns: repeat(auto-fill, minmax(240px, 360px))">
+        <!-- cartes générées en JS -->
       </section>
 
-      <div class="page-cta">
-        <p data-content="events.cta.text"></p>
-        <a href="rsvp.html" class="btn btn-primary" data-content="events.cta.button"></a>
+      <div class="mt-5 pt-[14px] border-t border-dashed border-[rgba(176,144,120,0.45)] flex flex-col gap-[10px] text-sm text-brown-muted sm:flex-row sm:items-center sm:justify-between">
+        <p class="m-0" data-content="events.cta.text"></p>
+        <a href="rsvp.html"
+           class="inline-flex items-center justify-center px-[18px] py-[10px] rounded-full bg-[#18100f] text-[#fdf6f1] text-sm font-medium no-underline shadow-[0_16px_30px_rgba(25,15,12,0.35)] transition-all duration-[160ms] hover:bg-[#241716] hover:-translate-y-px"
+           data-content="events.cta.button"></a>
       </div>
     </main>
 
-    <footer class="site-footer">
+    <footer class="mt-[18px] text-center text-[13px] text-brown-soft">
       <p data-content="footer.events"></p>
     </footer>
   </div>
 
   <script src="content.js"></script>
+  <script src="navbar.js"></script>
   <script>
     (function () {
-      const { shared, eventsPage } = window.siteContent;
-      const events = Array.isArray(eventsPage.items) ? eventsPage.items : [];
+      const cardColors = ['#E1B378', '#B1B137', '#8CB608', '#F6E5AD'];
 
-      applyContent({
-        text: {
-          "brand.mark": shared.brandMark,
-          "brand.names": shared.brandNames,
-          "brand.sub": shared.brandSub,
-          "nav.program": shared.nav.program,
-          "nav.venue": shared.nav.venue,
-          "nav.list": shared.nav.list,
-          "nav.dresscode": shared.nav.dresscode,
-          "nav.rsvp": shared.nav.rsvp,
-          "events.eyebrow": eventsPage.eyebrow,
-          "events.title": eventsPage.title,
-          "events.intro": eventsPage.intro,
-          "events.cta.text": eventsPage.cta.text,
-          "events.cta.button": eventsPage.cta.button,
-          "footer.events": shared.footer.events,
-        },
-      });
+      function hexToRgb(hex) {
+        const n = parseInt(hex.slice(1), 16);
+        return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+      }
 
-      const cardsGrid = document.querySelector(".cards-grid");
-      if (cardsGrid) {
-        cardsGrid.innerHTML = "";
-        events.forEach((event) => {
+      function tintedBg(r, g, b) {
+        const base = [253, 250, 245];
+        const f = 0.78;
+        return [
+          Math.round(r + (base[0] - r) * f),
+          Math.round(g + (base[1] - g) * f),
+          Math.round(b + (base[2] - b) * f),
+        ];
+      }
+
+      window.contentReady.then(function (data) {
+        if (!data) return;
+        const { shared, eventsPage } = data;
+        const events = Array.isArray(eventsPage.items) ? eventsPage.items : [];
+
+        applyContent({
+          text: {
+            'events.eyebrow':    eventsPage.eyebrow,
+            'events.title':      eventsPage.title,
+            'events.intro':      eventsPage.intro,
+            'events.cta.text':   eventsPage.cta.text,
+            'events.cta.button': eventsPage.cta.button,
+            'footer.events':     shared.footer.events,
+          },
+        });
+
+        const grid = document.querySelector('[data-cards-grid]');
+        if (!grid) return;
+        grid.innerHTML = '';
+
+        events.forEach((event, index) => {
           if (!event) return;
-          const card = document.createElement("article");
-          card.className = "event-card ui-card-event";
+          const [r, g, b] = hexToRgb(cardColors[index] || '#E1B378');
+          const bg = tintedBg(r, g, b);
+          const bgStr = `rgb(${bg.join(',')})`;
+          const dr = Math.round(r * 0.45);
+          const dg = Math.round(g * 0.45);
+          const db = Math.round(b * 0.45);
+          const darkStr = `rgb(${dr},${dg},${db})`;
 
-          const imageWrapper = document.createElement("div");
-          imageWrapper.className = "event-card-image";
-          if (event.image) {
-            imageWrapper.style.backgroundImage = `url('${event.image}')`;
-          }
+          const card = document.createElement('article');
+          card.className = 'overflow-hidden rounded-[24px] flex flex-col h-full transition-transform duration-300 hover:-translate-y-1 cursor-default';
+          card.style.background = bgStr;
+          card.style.border = `1px solid rgba(${r},${g},${b},0.3)`;
+          card.style.boxShadow = `0 20px 60px rgba(${r},${g},${b},0.22)`;
 
-          const body = document.createElement("div");
-          body.className = "event-card-body";
+          const imageSection = document.createElement('div');
+          imageSection.className = 'relative flex-shrink-0 h-[220px]';
 
-          const header = document.createElement("header");
-          header.className = "event-card-header";
+          const imageBg = document.createElement('div');
+          imageBg.className = 'absolute inset-0 bg-cover bg-center';
+          imageBg.style.backgroundColor = `rgba(${r},${g},${b},0.3)`;
+          if (event.image) imageBg.style.backgroundImage = `url('${event.image}')`;
 
-          const headerLeft = document.createElement("div");
+          const imageGradient = document.createElement('div');
+          imageGradient.className = 'absolute inset-0';
+          imageGradient.style.background = `linear-gradient(to bottom, transparent 88%, ${bgStr} 100%)`;
 
-          const dayEl = document.createElement("p");
-          dayEl.className = "event-day";
-          dayEl.textContent = event.day || "";
-          headerLeft.appendChild(dayEl);
+          imageSection.append(imageBg, imageGradient);
 
-          const nameEl = document.createElement("p");
-          nameEl.className = "event-name";
-          nameEl.textContent = event.name || "";
-          headerLeft.appendChild(nameEl);
+          const content = document.createElement('div');
+          content.className = 'flex-1 flex flex-col justify-end px-5 pb-5 pt-3 gap-2';
 
-          const timeEl = document.createElement("p");
-          timeEl.className = "event-time";
-          timeEl.textContent = event.time || "";
+          const dayTimeEl = document.createElement('p');
+          dayTimeEl.className = 'text-[11px] m-0 tracking-wider uppercase';
+          dayTimeEl.style.color = darkStr;
+          dayTimeEl.textContent = [event.day, event.time].filter(Boolean).join(' · ');
 
-          header.append(headerLeft, timeEl);
+          const nameEl = document.createElement('h3');
+          nameEl.className = 'font-semibold text-[19px] m-0 leading-tight';
+          nameEl.style.color = '#1a1210';
+          nameEl.textContent = event.name || '';
 
-          const descriptionEl = document.createElement("p");
-          descriptionEl.className = "event-description";
-          descriptionEl.textContent = event.description || "";
+          const descEl = document.createElement('p');
+          descEl.className = 'text-[13px] leading-relaxed m-0';
+          descEl.style.color = 'rgba(61,44,42,0.6)';
+          descEl.textContent = event.description || '';
 
-          const meta = document.createElement("div");
-          meta.className = "event-meta";
+          const chips = document.createElement('div');
+          chips.className = 'flex flex-wrap gap-2 pt-2';
 
           if (event.location) {
-            const chipLocation = document.createElement("span");
-            chipLocation.className = "chip chip-location";
-            chipLocation.textContent = event.location;
-            meta.appendChild(chipLocation);
+            const c = document.createElement('span');
+            c.className = 'text-[11px] px-3 py-1.5 rounded-full';
+            c.style.color = darkStr;
+            c.style.border = `1px solid rgba(${dr},${dg},${db},0.4)`;
+            c.style.background = `rgba(${r},${g},${b},0.15)`;
+            c.textContent = event.location;
+            chips.appendChild(c);
           }
-
           if (event.dresscode) {
-            const chipDresscode = document.createElement("span");
-            chipDresscode.className = "chip chip-dresscode";
-            chipDresscode.textContent = event.dresscode;
-            meta.appendChild(chipDresscode);
+            const c = document.createElement('span');
+            c.className = 'text-[11px] px-3 py-1.5 rounded-full';
+            c.style.color = darkStr;
+            c.style.border = `1px solid rgba(${dr},${dg},${db},0.4)`;
+            c.style.background = `rgba(${r},${g},${b},0.15)`;
+            c.textContent = event.dresscode;
+            chips.appendChild(c);
           }
 
-          body.append(header, descriptionEl);
-          if (meta.children.length) {
-            body.appendChild(meta);
-          }
-
-          card.append(imageWrapper, body);
-
-          cardsGrid.appendChild(card);
+          content.append(dayTimeEl, nameEl, descEl, chips);
+          card.append(imageSection, content);
+          grid.appendChild(card);
         });
-      }
+      });
     })();
   </script>
 </body>
