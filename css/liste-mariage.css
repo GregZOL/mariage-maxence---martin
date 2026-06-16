@@ -12,7 +12,8 @@
   position: relative;
   min-height: clamp(520px, 78vh, 760px);
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   border-radius: var(--radius-lg);
   border: 1px solid rgba(230, 211, 197, 0.9);
@@ -20,16 +21,11 @@
 }
 
 .wedding-list-section--foundation {
-  align-items: flex-start;
+  align-items: center;
 }
 
 .wedding-list-section--couple {
-  align-items: flex-start;
-  padding: 0px;
-}
-
-.wedding-list-section::after {
-  display: none;
+  align-items: center;
 }
 
 .wedding-list-media {
@@ -49,12 +45,38 @@
   height: 100%;
 }
 
+.wedding-list-image-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  gap: 8px;
+  background-color: #f9f9f9;
+}
+
+.wedding-list-logo-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  background-color: #f9f9f9;
+}
+
+.image4::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
 .wedding-list-media img {
   display: block;
   width: 100%;
   height: 100%;
-  padding-top: 100px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .wedding-list-media--logo {
@@ -76,8 +98,9 @@
 
 .wedding-list-text {
   margin: 0;
-  color: #8a4a2f;
+  color: #000  ;
   font-size: clamp(16px, 2vw, 20px);
+  font-weight: 800;
   line-height: 1.8;
   text-align: center;
   white-space: pre-line;
