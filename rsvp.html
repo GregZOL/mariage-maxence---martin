@@ -133,7 +133,8 @@
     (function () {
       const DEFAULT_URL = "https://script.google.com/macros/s/AKfycbxGjtncs1FufA3uFS-jqdViCIpNoVmihqFFPFIbux3_0-xUpgiVq69qV97FbyqoN1x1NA/exec";
       const SCRIPT_URL  = window.GOOGLE_SCRIPT_URL || DEFAULT_URL;
-      const EVENT_NAMES = ['verre_accueil', 'ceremonie', 'reception', 'Aperitivo'];
+      // Ces clés doivent rester alignées avec le script Google Sheets.
+      const EVENT_FIELD_NAMES = ['verre_accueil', 'ceremonie', 'reception', 'aperetivo'];
 
       window.contentReady.then(function (data) {
         if (!data) return;
